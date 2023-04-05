@@ -16,6 +16,7 @@ namespace UsagiConnect
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Console.WriteLine("Test.");
         }
     }
 }
