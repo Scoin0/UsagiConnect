@@ -353,3 +353,10 @@ App.config
 Directory.Build.props
 log4net.config
 *.sln
+
+
+#docs
+.temp
+.cache
+docs/docs/.vuepress/dist/
+build/*/*
