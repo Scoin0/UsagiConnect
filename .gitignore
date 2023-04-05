@@ -347,3 +347,10 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+
+# My Changes
+App.config
+Directory.Build.props
+log4net.config
+*.csproj
+*.sln
