@@ -9,6 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+Debug/
+Release/
+CodeAnalyst/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -358,3 +361,5 @@ log4net.config
 .cache
 docs/docs/.vuepress/dist/
 build/*/*
+
+UsagiConnect/UsagiConnect.sln
