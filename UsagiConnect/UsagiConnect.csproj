@@ -57,6 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Osu\Beatmap\Beatmap.cs" />
+    <Compile Include="Osu\Beatmap\BeatmapCompact.cs" />
+    <Compile Include="Osu\Beatmap\Beatmapset.cs" />
+    <Compile Include="Osu\Beatmap\BeatmapsetCompact.cs" />
+    <Compile Include="Osu\Enums\Gamemode.cs" />
+    <Compile Include="Osu\Enums\ModAttribute.cs" />
+    <Compile Include="Osu\Enums\Mods.cs" />
+    <Compile Include="Osu\Enums\ModUtils.cs" />
+    <Compile Include="Osu\Enums\RankStatus.cs" />
+    <Compile Include="Osu\User\User.cs" />
+    <Compile Include="Osu\User\UserCompact.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
