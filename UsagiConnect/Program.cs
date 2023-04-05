@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using UsagiConnect.WForms;
 
 namespace UsagiConnect
 {
@@ -16,7 +14,7 @@ namespace UsagiConnect
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Console.WriteLine("Test.");
+            Application.Run(new MainForm());
         }
     }
 }
