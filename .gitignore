@@ -352,5 +352,4 @@ MigrationBackup/
 App.config
 Directory.Build.props
 log4net.config
-*.csproj
 *.sln
