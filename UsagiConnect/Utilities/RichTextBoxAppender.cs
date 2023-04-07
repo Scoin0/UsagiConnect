@@ -53,7 +53,7 @@ namespace UsagiConnect.Utilities
                 {
                     _textBox.SelectionStart = _textBox.TextLength;
                     _textBox.SelectionLength = 0;
-                    _textBox.SelectionColor = Color.Black;
+                    _textBox.SelectionColor = Color.White;
                     _textBox.AppendText(RenderLoggingEvent(loggingEvent));
                     _textBox.SelectionColor = _textBox.ForeColor;
                 }
