@@ -1,5 +1,4 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,8 +7,6 @@ namespace UsagiConnect.Osu.API.Enums
 {
     public static class ModUtils
     {
-        //private static readonly ILog Log = LogManager.GetLogger(typeof(Form1));
-
         private static Dictionary<Mods, string> ModName { get; }
 
         static ModUtils()

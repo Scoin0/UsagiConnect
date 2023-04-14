@@ -43,6 +43,5 @@ namespace UsagiConnect.Osu.API.User
         [JsonProperty("post_count")]
         public int PostCount { get; set; }
 
-
     }
 }

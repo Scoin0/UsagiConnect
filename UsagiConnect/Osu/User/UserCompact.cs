@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using UsagiConnect.Osu.User;
 
 namespace UsagiConnect.Osu.API.User
 {
@@ -84,65 +85,5 @@ namespace UsagiConnect.Osu.API.User
 
         [JsonProperty("score_recent_count")]
         public int ScoreRecentCount { get; set; }
-    }
-
-    public class RankHighest
-    {
-        [JsonProperty("rank")]
-        public int Rank { get; set; }
-
-        [JsonProperty("updated_at")]
-        public DateTimeOffset UpdatedAt { get; set; }
-    }
-
-    public class UserAccountHistory
-    {
-#nullable enable
-        [JsonProperty("description")]
-        public string? Description { get; set; }
-#nullable disable
-
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("length")]
-        public int Length { get; set; }
-
-        [JsonProperty("permanent")]
-        public bool Permanent { get; set; }
-
-        [JsonProperty("timestamp")]
-        public DateTimeOffset Timestamp { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-    }
-
-    public class ProfileBanner
-    {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("tournament_id")]
-        public int TournamentId { get; set; }
-
-        [JsonProperty("image")]
-        public string Image { get; set; }
-    }
-
-    public class UserBadge
-    {
-        [JsonProperty("awarded_at")]
-        public DateTimeOffset AwardedAt { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("image_url")]
-        public int ImageUrl { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
     }
 }

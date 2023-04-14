@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.ComponentModel;
 using UsagiConnect.Osu.API.Enums;
+using UsagiConnect.Osu.Beatmap;
 
 namespace UsagiConnect.Osu.API.Beatmap
 {
@@ -31,7 +31,6 @@ namespace UsagiConnect.Osu.API.Beatmap
         [JsonProperty("version")]
         public string Version { get; set; }
 
-        [Description("Optional Attributes")]
         [JsonProperty("beatmapset")]
         public Beatmapset Beatmapset { get; set; }
 
@@ -43,22 +42,5 @@ namespace UsagiConnect.Osu.API.Beatmap
 
         [JsonProperty("max_combo")]
         public int MaxCombo { get; set; }
-    }
-
-    /// <summary>
-    /// Follows the osu!web documentation of FailTimes (As of February 21st, 2023)
-    /// Description: All fields are optional but there's always at least one field returned.
-    /// URL:         https://osu.ppy.sh/docs/index.html#beatmapcompact-failtimes
-    /// </summary>
-
-    public class FailTimes
-    {
-        #region Failtimes
-        [JsonProperty("fail")]
-        public IEnumerable<int> Fail { get; set; }
-
-        [JsonProperty("exit")]
-        public IEnumerable<int> Exit { get; set; }
-        #endregion
     }
 }

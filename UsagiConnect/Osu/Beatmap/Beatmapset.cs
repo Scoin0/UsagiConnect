@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using UsagiConnect.Osu.API.Beatmap.Enums;
+using UsagiConnect.Osu.Beatmap;
 
 namespace UsagiConnect.Osu.API.Beatmap
 {
@@ -55,67 +56,5 @@ namespace UsagiConnect.Osu.API.Beatmap
 
         [JsonProperty("beatmaps")]
         public Beatmap Beatmaps { get; set; }
-    }
-
-    public class Availability
-    {
-        #region Availability
-        [JsonProperty("download_disabled")]
-        public bool IsDownloadDisabled { get; set; }
-
-        [JsonProperty("more_information")]
-        public string MoreInformation { get; set; }
-        #endregion
-    }
-
-    public class Nominations
-    {
-        #region Nominations
-        [JsonProperty("current")]
-        public int Current { get; set; }
-
-        [JsonProperty("required")]
-        public int Required { get; set; }
-        #endregion
-    }
-
-    public class Hype
-    {
-        #region Hype
-        [JsonProperty("current")]
-        public int Current { get; set; }
-
-        [JsonProperty("required")]
-        public int Required { get; set; }
-        #endregion
-    }
-
-    public class Covers
-    {
-        #region Covers
-        [JsonProperty("cover")]
-        public string Cover { get; set; }
-
-        [JsonProperty("cover@2x")]
-        public string Cover2X { get; set; }
-
-        [JsonProperty("card")]
-        public string Card { get; set; }
-
-        [JsonProperty("card@2x")]
-        public string Card2X { get; set; }
-
-        [JsonProperty("list")]
-        public string List { get; set; }
-
-        [JsonProperty("list@2x")]
-        public string List2X { get; set; }
-
-        [JsonProperty("slimcover")]
-        public string Slimcover { get; set; }
-
-        [JsonProperty("slimcover@2x")]
-        public string Slimcover2X { get; set; }
-        #endregion
     }
 }
