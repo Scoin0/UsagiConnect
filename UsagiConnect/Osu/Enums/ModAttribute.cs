@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UsagiConnect.Osu.API.Enums
+namespace UsagiConnect.Osu.Enums
 {
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class ModAttribute : Attribute

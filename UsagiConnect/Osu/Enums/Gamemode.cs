@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace UsagiConnect.Osu.API.Enums
+namespace UsagiConnect.Osu.Enums
 {
     public enum Gamemode
     {

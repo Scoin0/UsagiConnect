@@ -1,4 +1,4 @@
-﻿namespace UsagiConnect.Osu.API.Beatmap.Enums
+﻿namespace UsagiConnect.Osu.Enums
 {
     public enum RankStatus
     {

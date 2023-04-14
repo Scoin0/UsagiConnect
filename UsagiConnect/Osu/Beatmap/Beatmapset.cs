@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
-using UsagiConnect.Osu.API.Beatmap.Enums;
+using UsagiConnect.Osu.Enums;
 using UsagiConnect.Osu.Beatmap;
 
-namespace UsagiConnect.Osu.API.Beatmap
+namespace UsagiConnect.Osu.Beatmap
 {
     public class Beatmapset : BeatmapsetCompact
     {

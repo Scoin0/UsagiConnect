@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using UsagiConnect.Client;
 using UsagiConnect.Configuration;
-using UsagiConnect.Osu.API.Beatmap;
-using UsagiConnect.Osu.API.Enums;
-using UsagiConnect.Osu.API.User;
+using UsagiConnect.Osu.Beatmap;
+using UsagiConnect.Osu.Enums;
+using UsagiConnect.Osu.User;
 using Button = System.Windows.Forms.Button;
 
 namespace UsagiConnect.WForms

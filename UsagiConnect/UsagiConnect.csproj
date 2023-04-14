@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\DefaultTokenObject.cs" />
     <Compile Include="Client\OsuClient.cs" />
     <Compile Include="Client\Route.cs" />
     <Compile Include="Configuration\Config.cs" />

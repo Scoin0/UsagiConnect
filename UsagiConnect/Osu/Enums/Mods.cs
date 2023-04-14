@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UsagiConnect.Osu.API.Enums
+namespace UsagiConnect.Osu.Enums
 {
     [Flags]
     public enum Mods

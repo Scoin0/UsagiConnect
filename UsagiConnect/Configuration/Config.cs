@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using UsagiConnect.Osu.API.Beatmap;
 using UsagiConnect.Osu.Beatmap;
 using System.Threading.Tasks;
 using UsagiConnect.Utilities;

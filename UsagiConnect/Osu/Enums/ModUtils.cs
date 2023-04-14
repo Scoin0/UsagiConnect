@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace UsagiConnect.Osu.API.Enums
+namespace UsagiConnect.Osu.Enums
 {
     public static class ModUtils
     {

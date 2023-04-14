@@ -5,9 +5,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using UsagiConnect.Osu.API.Beatmap;
-using UsagiConnect.Osu.API.Enums;
-using UsagiConnect.Osu.API.User;
+using UsagiConnect.Osu.Enums;
+using UsagiConnect.Osu.User;
 using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.WForms;
 
@@ -119,17 +118,5 @@ namespace UsagiConnect.Client
         {
             return await RequestApi<User>(Route.USER.Compile(userId, mode.ToString().ToLowerInvariant()), Token);
         }
-    }
-
-    public class DefaultTokenObject
-    {
-        [JsonProperty("access_token")]
-        public string AccessToken { get; set; }
-
-        [JsonProperty("expires_in")]
-        public int ExpiresIn { get; set; }
-
-        [JsonProperty("token_type")]
-        public string TokenType { get; set; }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using UsagiConnect.Osu.User;
 
-namespace UsagiConnect.Osu.API.User
+namespace UsagiConnect.Osu.User
 {
     public class UserCompact
     {
