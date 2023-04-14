@@ -1,16 +1,11 @@
 ﻿using log4net;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using UsagiConnect.Client;
+using UsagiConnect.Configuration;
+using UsagiConnect.Osu.API.Beatmap;
 using UsagiConnect.Osu.API.Enums;
 using UsagiConnect.Osu.API.User;
 using Button = System.Windows.Forms.Button;
@@ -26,7 +21,8 @@ namespace UsagiConnect.WForms
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private static extern void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         
-        public OsuClient Client;
+        public static OsuClient OsuClient;
+        public static Config Config;
         private Form activeForm;
         private Button currentButton;
 
@@ -41,19 +37,23 @@ namespace UsagiConnect.WForms
         private async void MainForm_Load(object sender, EventArgs e)
         {
             Log.Info("Welcome to UsagiConnect!");
-            
+            Config = new Config();
+            OsuClient = OsuClient.CreateClient(Config.OsuClientId, Config.OsuClientSecret);
             User user = new User();
-            user = await Client.getUser("3702410", Gamemode.Osu);
+            Beatmap map = await OsuClient.getBeatmap("2023927");
+            user = await OsuClient.getUser("I_Only_Hit_100s", Gamemode.Osu);
             profileAvatar.ImageLocation = user.AvatarUrl;
             lbName.Text = user.Username;
 
-            if (Client.IsOnline)
+            Log.Info(GetConfiguration().GetApiParsedMessage("[RECEIVED] > <beatmap_url> <user_sent> [<ranked_status>] <artist> - <title> [<version>] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>", map).Result);
+
+            if (OsuClient.IsOnline)
             {
                 profileAvatar.BorderColor = Color.Green;
                 profileAvatar.BorderColor2 = Color.Green;
                 profileAvatar.BorderSize = 2;
             }
-            else 
+            else
             {
                 profileAvatar.BorderColor = Color.Red;
                 profileAvatar.BorderColor2 = Color.Red;
@@ -61,8 +61,19 @@ namespace UsagiConnect.WForms
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public static OsuClient GetOsuClient()
         {
+            return OsuClient;
+        }
+
+        public static Config GetConfiguration()
+        {
+            return Config;
+        }
+
+        private void rtbLinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(e.LinkText);
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
