@@ -44,12 +44,6 @@ namespace UsagiConnect.Osu.API.User
         [JsonProperty("username")]
         public string Username { get; set; }
 
-        /// <summary>
-        /// Follows the osu!web documentation of UserCompact (As of March 9th, 2023)
-        /// Description: Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable.
-        /// URL:         https://osu.ppy.sh/docs/index.html#usercompact-optionalattributes
-        /// </summary>
-
         [JsonProperty("account_history")]
         public UserAccountHistory[] UserAccountHistory { get; set; }
 

@@ -57,12 +57,6 @@ namespace UsagiConnect.Osu.API.Beatmap
         public Beatmap Beatmaps { get; set; }
     }
 
-    /// <summary>
-    /// Follows the osu!web documentation of Availability (As of February 21st, 2023)
-    /// Description: Represents a beatmap.
-    /// URL:         https://osu.ppy.sh/docs/index.html#beatmapsetcompact-availability
-    /// </summary>
-
     public class Availability
     {
         #region Availability
@@ -73,12 +67,6 @@ namespace UsagiConnect.Osu.API.Beatmap
         public string MoreInformation { get; set; }
         #endregion
     }
-
-    /// <summary>
-    /// Follows the osu!web documentation of Nominations (As of February 21st, 2023)
-    /// Description: Represents a beatmap.
-    /// URL:         https://osu.ppy.sh/docs/index.html#beatmapsetcompact-nominations
-    /// </summary>
 
     public class Nominations
     {
@@ -91,12 +79,6 @@ namespace UsagiConnect.Osu.API.Beatmap
         #endregion
     }
 
-    /// <summary>
-    /// Follows the osu!web documentation of Hype (As of February 21st, 2023)
-    /// Description: Represents a beatmap.
-    /// URL:         https://osu.ppy.sh/docs/index.html#beatmapsetcompact-hype
-    /// </summary>
-
     public class Hype
     {
         #region Hype
@@ -107,12 +89,6 @@ namespace UsagiConnect.Osu.API.Beatmap
         public int Required { get; set; }
         #endregion
     }
-
-    /// <summary>
-    /// Follows the osu!web documentation of Covers (As of February 21st, 2023)
-    /// Description: Represents a beatmap.
-    /// URL:         https://osu.ppy.sh/docs/index.html#beatmapsetcompact-covers
-    /// </summary>
 
     public class Covers
     {
