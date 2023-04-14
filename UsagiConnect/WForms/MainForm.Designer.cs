@@ -31,21 +31,21 @@ namespace UsagiConnect.WForms
         private void InitializeComponent()
         {
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.pnlNav = new System.Windows.Forms.Panel();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.pnlTopLeft = new System.Windows.Forms.Panel();
             this.lbName = new System.Windows.Forms.Label();
+            this.profileAvatar = new UsagiConnect.WForms.CustomControls.CircularPictureBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.consoleBox = new System.Windows.Forms.RichTextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.pnlNav = new System.Windows.Forms.Panel();
-            this.profileAvatar = new UsagiConnect.WForms.CustomControls.CircularPictureBox();
             this.pnlLeft.SuspendLayout();
             this.pnlTopLeft.SuspendLayout();
-            this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profileAvatar)).BeginInit();
+            this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeft
@@ -60,6 +60,14 @@ namespace UsagiConnect.WForms
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(180, 577);
             this.pnlLeft.TabIndex = 0;
+            // 
+            // pnlNav
+            // 
+            this.pnlNav.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.pnlNav.Location = new System.Drawing.Point(0, 145);
+            this.pnlNav.Name = "pnlNav";
+            this.pnlNav.Size = new System.Drawing.Size(3, 100);
+            this.pnlNav.TabIndex = 1;
             // 
             // btnSettings
             // 
@@ -115,7 +123,23 @@ namespace UsagiConnect.WForms
             this.lbName.TabIndex = 0;
             this.lbName.Text = "UsagiConnect";
             this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbName.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // profileAvatar
+            // 
+            this.profileAvatar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.profileAvatar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.profileAvatar.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.profileAvatar.BorderDashCap = System.Drawing.Drawing2D.DashCap.Triangle;
+            this.profileAvatar.BorderDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.profileAvatar.BorderSize = 0;
+            this.profileAvatar.GradientAngle = 50F;
+            this.profileAvatar.ImageLocation = "https://a.ppy.sh/3702410?1623916581.jpeg ";
+            this.profileAvatar.Location = new System.Drawing.Point(40, 12);
+            this.profileAvatar.Name = "profileAvatar";
+            this.profileAvatar.Size = new System.Drawing.Size(100, 100);
+            this.profileAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.profileAvatar.TabIndex = 1;
+            this.profileAvatar.TabStop = false;
             // 
             // btnExit
             // 
@@ -166,31 +190,7 @@ namespace UsagiConnect.WForms
             this.consoleBox.Size = new System.Drawing.Size(771, 547);
             this.consoleBox.TabIndex = 0;
             this.consoleBox.Text = "";
-            // 
-            // pnlNav
-            // 
-            this.pnlNav.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.pnlNav.Location = new System.Drawing.Point(0, 145);
-            this.pnlNav.Name = "pnlNav";
-            this.pnlNav.Size = new System.Drawing.Size(3, 100);
-            this.pnlNav.TabIndex = 1;
-            // 
-            // profileAvatar
-            // 
-            this.profileAvatar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.profileAvatar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.profileAvatar.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.profileAvatar.BorderDashCap = System.Drawing.Drawing2D.DashCap.Triangle;
-            this.profileAvatar.BorderDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            this.profileAvatar.BorderSize = 0;
-            this.profileAvatar.GradientAngle = 50F;
-            this.profileAvatar.ImageLocation = "https://a.ppy.sh/3702410?1623916581.jpeg ";
-            this.profileAvatar.Location = new System.Drawing.Point(40, 12);
-            this.profileAvatar.Name = "profileAvatar";
-            this.profileAvatar.Size = new System.Drawing.Size(100, 100);
-            this.profileAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.profileAvatar.TabIndex = 1;
-            this.profileAvatar.TabStop = false;
+            this.consoleBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbLinkClicked);
             // 
             // MainForm
             // 
@@ -208,8 +208,8 @@ namespace UsagiConnect.WForms
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlLeft.ResumeLayout(false);
             this.pnlTopLeft.ResumeLayout(false);
-            this.pnlMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.profileAvatar)).EndInit();
+            this.pnlMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
