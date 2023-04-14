@@ -2,11 +2,13 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using UsagiConnect.Osu.API.Beatmap;
 using UsagiConnect.Osu.API.Enums;
 using UsagiConnect.Osu.API.User;
+using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.WForms;
 
 namespace UsagiConnect.Client
@@ -89,9 +91,28 @@ namespace UsagiConnect.Client
             return default(T);
         }
 
+        public T PostApi<T>(string compiledRoute, string token)
+        {
+            var client = new HttpClient();
+            var content = new StringContent("{\"mods\":\"0\",\"ruleset\":\"osu\"}", Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = client.PostAsync(OSU_ENDPOINT + compiledRoute, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var responseBody = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<T>(responseBody);
+            }
+            return default(T);
+        }
+
         public async Task<Beatmap> getBeatmap(string beatmapId)
         {
             return await RequestApi<Beatmap>(Route.BEATMAP.Compile(beatmapId), Token);
+        }
+
+        public BeatmapAttributes getBeatmapAttributes(string beatmapId)
+        {
+            return PostApi<BeatmapAttributes>(Route.BEATMAP_ATTRIBUTES.Compile(beatmapId), Token);
         }
 
         public async Task<User> getUser(string userId, Gamemode mode)
