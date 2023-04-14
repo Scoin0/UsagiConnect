@@ -3,13 +3,6 @@ using System;
 
 namespace UsagiConnect.Osu.API.User
 {
-
-    /// <summary>
-    /// Follows the osu!web documentation of UserCompact (As of March 9th, 2023)
-    /// Description: Mainly used for embedding in certain responses to save additional api lookups.
-    /// URL:         https://osu.ppy.sh/docs/index.html#usercompact
-    /// </summary>
-
     public class UserCompact
     {
         [JsonProperty("avatar_url")]

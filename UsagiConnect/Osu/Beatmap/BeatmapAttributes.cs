@@ -2,13 +2,6 @@
 
 namespace UsagiConnect.Osu.Beatmap
 {
-
-    /// <summary>
-    /// Follows the osu!web documentation of BeatmapCompact (As of April 13th, 2023)
-    /// Description: Represent a beatmap.
-    /// URL:         https://osu.ppy.sh/docs/index.html#beatmapdifficultyattributes
-    /// </summary>
-
     public class BeatmapAttributes
     {
         [JsonProperty("attributes")]

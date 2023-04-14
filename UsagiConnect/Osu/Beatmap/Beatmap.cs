@@ -5,13 +5,6 @@ using UsagiConnect.Osu.API.Beatmap.Enums;
 
 namespace UsagiConnect.Osu.API.Beatmap
 {
-
-    /// <summary>
-    /// Follows the osu!web documentation of Beatmap (As of February 21st, 2023)
-    /// Description: Represents a beatmap.
-    /// URL:         https://osu.ppy.sh/docs/index.html#beatmap
-    /// </summary>
-
     public class Beatmap : BeatmapCompact
     {
         [JsonProperty("accuracy")]
