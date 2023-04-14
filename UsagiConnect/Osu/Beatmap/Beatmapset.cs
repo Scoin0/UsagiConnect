@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UsagiConnect.Osu.API.Beatmap.Enums;
 
 namespace UsagiConnect.Osu.API.Beatmap

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
 using UsagiConnect.Osu.API.Enums;
 
 namespace UsagiConnect.Osu.API.Beatmap
