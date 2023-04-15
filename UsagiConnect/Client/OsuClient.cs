@@ -19,7 +19,7 @@ namespace UsagiConnect.Client
         public bool IsOnline = false;
         private static readonly string TOKEN_URL = "https://osu.ppy.sh/oauth/token";
         private static readonly string OSU_ENDPOINT = "https://osu.ppy.sh/api/v2/";
-        private static readonly ILog Log = LogManager.GetLogger(typeof(MainForm));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(OsuClient).Name);
 
         public OsuClient(string token, int tokenTimeout)
         {

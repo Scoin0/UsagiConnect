@@ -14,7 +14,7 @@ namespace UsagiConnect.WForms
 {
     public partial class MainForm : Form
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(MainForm));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(MainForm).Name);
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private static extern void ReleaseCapture();
 
@@ -39,6 +39,7 @@ namespace UsagiConnect.WForms
             Log.Info("Welcome to UsagiConnect!");
             Config = new Config();
             OsuClient = OsuClient.CreateClient(Config.OsuClientId, Config.OsuClientSecret);
+            _ = new TwiClient();
             User user = new User();
             Beatmap map = await OsuClient.getBeatmap("2023927");
             user = await OsuClient.getUser("I_Only_Hit_100s", Gamemode.Osu);

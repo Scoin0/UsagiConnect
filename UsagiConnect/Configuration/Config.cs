@@ -15,7 +15,7 @@ namespace UsagiConnect.Configuration
     {
         private readonly string configDirectory = "configuration\\";
         private readonly string config = "configuration\\config.json";
-        private static readonly ILog Log = LogManager.GetLogger(typeof(MainForm));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(Config).Name);
 
         /* Global Settings */
         public string Prefix { get; set; } = "!";
