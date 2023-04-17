@@ -220,6 +220,9 @@
     <Compile Include="WForms\CustomControls\CircularPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WForms\CustomControls\ToggleSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WForms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
