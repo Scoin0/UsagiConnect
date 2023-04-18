@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 using UsagiConnect.Osu.Enums;
 using UsagiConnect.Osu.User;
 using UsagiConnect.Osu.Beatmap;
-using UsagiConnect.WForms;
+using UsagiConnect.Osu.Exceptions;
+using System.Net;
 
 namespace UsagiConnect.Client
 {
@@ -49,7 +50,15 @@ namespace UsagiConnect.Client
             try
             {
                 var response = client.SendAsync(request).Result;
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    Log.Error($"Error code: { response.StatusCode }");
+                    return response.StatusCode switch
+                    {
+                        HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
+                        _ => null
+                    };
+                }
                 var responseBody = response.Content.ReadAsStringAsync().Result;
                 var tokenObject = JsonConvert.DeserializeObject<DefaultTokenObject>(responseBody);
                 Log.Info("Token retrieved!");
@@ -75,7 +84,15 @@ namespace UsagiConnect.Client
             try
             {
                 var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    Log.Error($"Error code: {response.StatusCode}");
+                    return response.StatusCode switch
+                    {
+                        HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
+                        _ => throw new System.NotImplementedException()
+                    };
+                }
                 var body = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(body);
             }
@@ -101,7 +118,15 @@ namespace UsagiConnect.Client
                 var responseBody = response.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<T>(responseBody);
             }
-            return default(T);
+            else
+            {
+                Log.Error($"Error code: {response.StatusCode}");
+                return response.StatusCode switch
+                {
+                    HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
+                    _ => throw new System.NotImplementedException()
+                };
+            }
         }
 
         public async Task<Beatmap> getBeatmap(string beatmapId)
