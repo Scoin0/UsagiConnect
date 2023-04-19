@@ -6,6 +6,7 @@ using TwitchLib.Client.Models;
 using TwitchLib.Communication.Clients;
 using TwitchLib.Communication.Models;
 using UsagiConnect.WForms;
+using UsagiConnect.Commands;
 
 namespace UsagiConnect.Client
 {
@@ -13,6 +14,7 @@ namespace UsagiConnect.Client
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(TwiClient).Name);
         TwitchClient TwitchClient;
+        CommandClient CommandClient;
         public TwiClient() 
         {
             ConnectionCredentials credentials = new ConnectionCredentials(MainForm.Config.TwitchUsername, MainForm.Config.TwitchPassword);
@@ -26,9 +28,14 @@ namespace UsagiConnect.Client
             WebSocketClient customClient = new WebSocketClient(clientOptions);
             TwitchClient = new TwitchClient(customClient);
             TwitchClient.Initialize(credentials, MainForm.Config.TwitchChannel);
-            TwitchClient.OnMessageReceived += Client_OnMessageReceived;
             TwitchClient.OnConnected += Client_OnConnected;
             TwitchClient.Connect();
+            CommandClient = new CommandClient(GetTwitchClient());
+        }
+
+        public TwitchClient GetTwitchClient()
+        {
+            return TwitchClient;
         }
 
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
