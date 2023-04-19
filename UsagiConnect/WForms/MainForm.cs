@@ -1,5 +1,6 @@
 ﻿using log4net;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -46,7 +47,7 @@ namespace UsagiConnect.WForms
             profileAvatar.ImageLocation = user.AvatarUrl;
             lbName.Text = user.Username;
 
-            Log.Info(GetConfiguration().GetApiParsedMessage("[RECEIVED] > <beatmap_url> <user_sent> [<ranked_status>] <artist> - <title> [<version>] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>", map).Result);
+            Log.Info(Config.GetApiParsedMessage("[RECEIVED] > <beatmap_url> <user_sent> [<ranked_status>] <artist> - <title> [<version>] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>", map).Result);
 
             if (OsuClient.IsOnline)
             {
@@ -62,16 +63,6 @@ namespace UsagiConnect.WForms
             }
         }
 
-        public static OsuClient GetOsuClient()
-        {
-            return OsuClient;
-        }
-
-        public static Config GetConfiguration()
-        {
-            return Config;
-        }
-
         private void rtbLinkClicked(object sender, LinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(e.LinkText);
@@ -81,6 +72,7 @@ namespace UsagiConnect.WForms
         {
             if (activeForm != null)
             {
+                Config.SaveConfiguration();
                 activeForm.Close();
                 pnlNav.Height = btnDashboard.Height;
                 pnlNav.Top = btnDashboard.Top;

@@ -100,7 +100,7 @@ namespace UsagiConnect.Configuration
 
         public Task<string> GetApiParsedMessage(string message, Beatmap beatmap)
         {
-            BeatmapAttributes map = MainForm.GetOsuClient().getBeatmapAttributes(beatmap.Id.ToString());
+            BeatmapAttributes map = MainForm.OsuClient.getBeatmapAttributes(beatmap.Id.ToString());
             Dictionary<string, object> keywords = new Dictionary<string, object>();
             keywords.Add("music_note_emoji", "\u266B");
             keywords.Add("star_emoji", "\u2605");

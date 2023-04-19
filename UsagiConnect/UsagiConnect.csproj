@@ -202,6 +202,7 @@
     <Compile Include="Osu\Beatmap\FailTimes.cs" />
     <Compile Include="Osu\Beatmap\Hype.cs" />
     <Compile Include="Osu\Beatmap\Nominations.cs" />
+    <Compile Include="Osu\Exceptions\InvalidApiKeyException.cs" />
     <Compile Include="Osu\User\ProfileBanner.cs" />
     <Compile Include="Osu\User\RankHighest.cs" />
     <Compile Include="Osu\User\UserAccountHistory.cs" />
@@ -219,6 +220,15 @@
     <Compile Include="Utilities\RichTextBoxAppender.cs" />
     <Compile Include="WForms\CustomControls\CircularPictureBox.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WForms\CustomControls\DesignButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WForms\CustomControls\DesignTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WForms\CustomControls\DesignTextBox.Designer.cs">
+      <DependentUpon>DesignTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="WForms\CustomControls\ToggleSlider.cs">
       <SubType>Component</SubType>
@@ -244,6 +254,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WForms\CustomControls\DesignTextBox.resx">
+      <DependentUpon>DesignTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WForms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -268,9 +281,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Twitch\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
