@@ -7,7 +7,6 @@ namespace UsagiConnect.WForms
 {
     public partial class SettingsForm : Form
     {
-
         private static readonly ILog Log = LogManager.GetLogger(typeof(SettingsForm).Name);
 
         public SettingsForm()

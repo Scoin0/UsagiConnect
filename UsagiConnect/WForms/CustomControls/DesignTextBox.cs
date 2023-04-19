@@ -132,7 +132,7 @@ namespace UsagiConnect.WForms.CustomControls
         private GraphicsPath GetFigurePath(Rectangle rect, int radius)
         {
             GraphicsPath path = new GraphicsPath();
-            float curveSize = radius * 2F;
+            float curveSize = radius * 2f;
 
             path.StartFigure();
             path.AddArc(rect.X, rect.Y, curveSize, curveSize, 180, 90);
