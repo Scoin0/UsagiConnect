@@ -202,6 +202,7 @@
     <Compile Include="Osu\Beatmap\FailTimes.cs" />
     <Compile Include="Osu\Beatmap\Hype.cs" />
     <Compile Include="Osu\Beatmap\Nominations.cs" />
+    <Compile Include="Osu\Exceptions\BeatmapNotFoundException.cs" />
     <Compile Include="Osu\Exceptions\InvalidApiKeyException.cs" />
     <Compile Include="Osu\User\ProfileBanner.cs" />
     <Compile Include="Osu\User\RankHighest.cs" />
