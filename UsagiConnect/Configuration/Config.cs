@@ -43,7 +43,6 @@ namespace UsagiConnect.Configuration
         public string OsuIrcMessage { get; set; } = "[<user_sent>] > [https://osu.ppy.sh/b/<beatmap_id> <artist> - <title> [<version>]] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>";
         public string NowPlayingMessage { get; set; } = "Here you go! <beatmap_url>";
 
-
         public Config()
         {
             InitConfiguration();
