@@ -182,7 +182,7 @@ namespace UsagiConnect.WForms
             this.consoleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
             this.consoleBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.consoleBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.consoleBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.consoleBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.consoleBox.ForeColor = System.Drawing.Color.White;
             this.consoleBox.Location = new System.Drawing.Point(0, 0);
             this.consoleBox.Name = "consoleBox";

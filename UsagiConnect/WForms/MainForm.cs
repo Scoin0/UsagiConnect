@@ -1,8 +1,8 @@
 ﻿using log4net;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using UsagiConnect.Client;
 using UsagiConnect.Configuration;
@@ -20,7 +20,7 @@ namespace UsagiConnect.WForms
         private static extern void ReleaseCapture();
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
-        private static extern void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
         
         public static OsuClient OsuClient;
         public static Config Config;
@@ -39,28 +39,10 @@ namespace UsagiConnect.WForms
         {
             Log.Info("Welcome to UsagiConnect!");
             Config = new Config();
-            OsuClient = OsuClient.CreateClient(Config.OsuClientId, Config.OsuClientSecret);
-            _ = new TwiClient();
-            User user = new User();
-            Beatmap map = await OsuClient.getBeatmap("2023927");
-            user = await OsuClient.getUser("I_Only_Hit_100s", Gamemode.Osu);
-            profileAvatar.ImageLocation = user.AvatarUrl;
-            lbName.Text = user.Username;
+            await CreateClientsAsync();
 
-            Log.Info(Config.GetApiParsedMessage("[RECEIVED] > <beatmap_url> <user_sent> [<ranked_status>] <artist> - <title> [<version>] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>", map).Result);
-
-            if (OsuClient.IsOnline)
-            {
-                profileAvatar.BorderColor = Color.Green;
-                profileAvatar.BorderColor2 = Color.Green;
-                profileAvatar.BorderSize = 2;
-            }
-            else
-            {
-                profileAvatar.BorderColor = Color.Red;
-                profileAvatar.BorderColor2 = Color.Red;
-                profileAvatar.BorderSize = 2;
-            }
+            //Beatmap map = await OsuClient.GetBeatmap("2023927");
+            //Log.Info(Config.GetApiParsedMessage(Config.OsuIrcMessage, map).Result);
         }
 
         private void rtbLinkClicked(object sender, LinkClickedEventArgs e)
@@ -146,6 +128,31 @@ namespace UsagiConnect.WForms
                     previousBtn.ForeColor = Color.FromArgb(170, 170, 170);
                     previousBtn.Font = new System.Drawing.Font("LT Asus", 20.25f, System.Drawing.FontStyle.Bold);
                 }
+            }
+        }
+
+        private async Task CreateClientsAsync()
+        {
+            OsuClient = OsuClient.CreateClient(Config.OsuClientId, Config.OsuClientSecret);
+            _ = new TwiClient();
+
+            if (OsuClient.IsOnline) 
+            {
+                User user = new User();
+                user = await OsuClient.GetUser(Config.BanchoUsername, Gamemode.Osu);
+                profileAvatar.BorderColor = Color.Green;
+                profileAvatar.BorderColor2 = Color.Green;
+                profileAvatar.BorderSize = 2;
+                profileAvatar.ImageLocation = user.AvatarUrl;
+                lbName.Text = user.Username;
+            }
+            else
+            {
+                profileAvatar.BorderColor = Color.Red;
+                profileAvatar.BorderColor2 = Color.Red;
+                profileAvatar.BorderSize = 2;
+                lbName.ForeColor = Color.Red;
+                lbName.Text = "Offline";
             }
         }
     }
