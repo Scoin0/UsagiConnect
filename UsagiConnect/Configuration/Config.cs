@@ -38,6 +38,12 @@ namespace UsagiConnect.Configuration
         public string OsuClientId { get; set; } = string.Empty;
         public string OsuClientSecret { get; set; } = string.Empty;
 
+        /* Custom Messages Settings */
+        public string TwitchMessage { get; set; } = "[RECEIVED] > <user_sent> [<ranked_status>] <artist> - <title> [<version>] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>";
+        public string OsuIrcMessage { get; set; } = "[<user_sent>] > [https://osu.ppy.sh/b/<beatmap_id> <artist> - <title> [<version>]] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>";
+        public string NowPlayingMessage { get; set; } = "Here you go! <beatmap_url>";
+
+
         public Config()
         {
             InitConfiguration();
@@ -100,7 +106,7 @@ namespace UsagiConnect.Configuration
 
         public Task<string> GetApiParsedMessage(string message, Beatmap beatmap)
         {
-            BeatmapAttributes map = MainForm.OsuClient.getBeatmapAttributes(beatmap.Id.ToString());
+            BeatmapAttributes map = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString());
             Dictionary<string, object> keywords = new Dictionary<string, object>();
             keywords.Add("music_note_emoji", "\u266B");
             keywords.Add("star_emoji", "\u2605");
