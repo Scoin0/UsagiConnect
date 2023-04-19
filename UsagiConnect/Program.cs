@@ -23,12 +23,12 @@ namespace UsagiConnect
         }
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            Log.Warn(e.Exception.Message);
+            Log.Debug(e.Exception.StackTrace);
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            Log.Warn((e.ExceptionObject as Exception).Message);
+            Log.Debug((e.ExceptionObject as Exception).StackTrace);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UsagiConnect.Client;
+using UsagiConnect.Commands;
 using UsagiConnect.Configuration;
 using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.Osu.Enums;
@@ -24,6 +25,7 @@ namespace UsagiConnect.WForms
         
         public static OsuClient OsuClient;
         public static Config Config;
+        public static TwiClient TwiClient;
         private Form activeForm;
         private Button currentButton;
 
@@ -43,6 +45,8 @@ namespace UsagiConnect.WForms
 
             //Beatmap map = await OsuClient.GetBeatmap("2023927");
             //Log.Info(Config.GetApiParsedMessage(Config.OsuIrcMessage, map).Result);
+
+            CommandClient.ReceiveBeatmap("https://osu.ppy.sh/beatmapsets/1972778#osu/4093569");
         }
 
         private void rtbLinkClicked(object sender, LinkClickedEventArgs e)
@@ -134,7 +138,7 @@ namespace UsagiConnect.WForms
         private async Task CreateClientsAsync()
         {
             OsuClient = OsuClient.CreateClient(Config.OsuClientId, Config.OsuClientSecret);
-            _ = new TwiClient();
+            TwiClient = new TwiClient();
 
             if (OsuClient.IsOnline) 
             {
