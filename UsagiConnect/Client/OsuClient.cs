@@ -17,7 +17,7 @@ namespace UsagiConnect.Client
     {
         public string Token;
         public int TokenTimeout;
-        public bool IsOnline = false;
+        public static bool IsOnline = false;
         private static readonly string TOKEN_URL = "https://osu.ppy.sh/oauth/token";
         private static readonly string OSU_ENDPOINT = "https://osu.ppy.sh/api/v2/";
         private static readonly ILog Log = LogManager.GetLogger(typeof(OsuClient).Name);
@@ -26,7 +26,6 @@ namespace UsagiConnect.Client
         {
             Token = token;
             TokenTimeout = tokenTimeout;
-            IsOnline = true;
         }
 
         public static OsuClient CreateClient(string clientId, string clientSecret)
@@ -56,12 +55,13 @@ namespace UsagiConnect.Client
                     return response.StatusCode switch
                     {
                         HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
-                        _ => null
+                        _ => throw new System.NotImplementedException()
                     };
                 }
                 var responseBody = response.Content.ReadAsStringAsync().Result;
                 var tokenObject = JsonConvert.DeserializeObject<DefaultTokenObject>(responseBody);
                 Log.Info("Token retrieved!");
+                IsOnline = true;
                 return new OsuClient(tokenObject.AccessToken, tokenObject.ExpiresIn);
             }
             catch (HttpRequestException e)
@@ -72,7 +72,10 @@ namespace UsagiConnect.Client
             {
                 Log.Warn($"JSON Exception: {e.Message}");
             }
-            Log.Warn("Unable to retrieve token. Is the configuration set up properly?");
+            catch 
+            {
+                Log.Warn("Unable to retrieve token. Is the configuration set up properly?");
+            }
             return null;
         }
 
@@ -90,6 +93,7 @@ namespace UsagiConnect.Client
                     return response.StatusCode switch
                     {
                         HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
+                        HttpStatusCode.NotFound => throw new BeatmapNotFoundException(),
                         _ => throw new System.NotImplementedException()
                     };
                 }
@@ -104,7 +108,11 @@ namespace UsagiConnect.Client
             {
                 Log.Warn($"JSON Exception: {e.Message}");
             }
-            return default(T);
+            catch
+            {
+                Log.Warn("Unable to retrieve token. Is the configuration set up properly?");
+            }
+            return default;
         }
 
         public T PostApi<T>(string compiledRoute, string token)
@@ -112,34 +120,52 @@ namespace UsagiConnect.Client
             var client = new HttpClient();
             var content = new StringContent("{\"mods\":\"0\",\"ruleset\":\"osu\"}", Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = client.PostAsync(OSU_ENDPOINT + compiledRoute, content).Result;
-            if (response.IsSuccessStatusCode)
+
+            try
             {
-                var responseBody = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<T>(responseBody);
-            }
-            else
-            {
-                Log.Error($"Error code: {response.StatusCode}");
-                return response.StatusCode switch
+                var response = client.PostAsync(OSU_ENDPOINT + compiledRoute, content).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
-                    _ => throw new System.NotImplementedException()
-                };
+                    var responseBody = response.Content.ReadAsStringAsync().Result;
+                    return JsonConvert.DeserializeObject<T>(responseBody);
+                }
+                else
+                {
+                    Log.Error($"Error code: {response.StatusCode}");
+                    return response.StatusCode switch
+                    {
+                        HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
+                        HttpStatusCode.NotFound => throw new BeatmapNotFoundException(),
+                        _ => throw new System.NotImplementedException()
+                    };
+                }
             }
+            catch (HttpRequestException e)
+            {
+                Log.Warn($"HTTP Exception: {e.Message}");
+            }
+            catch (JsonException e)
+            {
+                Log.Warn($"JSON Exception: {e.Message}");
+            }
+            catch
+            {
+                Log.Warn("Something went wrong. Perhaps it's not connected to the api?");
+            }
+            return default;
         }
 
-        public async Task<Beatmap> getBeatmap(string beatmapId)
+        public async Task<Beatmap> GetBeatmap(string beatmapId)
         {
             return await RequestApi<Beatmap>(Route.BEATMAP.Compile(beatmapId), Token);
         }
 
-        public BeatmapAttributes getBeatmapAttributes(string beatmapId)
+        public BeatmapAttributes GetBeatmapAttributes(string beatmapId)
         {
             return PostApi<BeatmapAttributes>(Route.BEATMAP_ATTRIBUTES.Compile(beatmapId), Token);
         }
 
-        public async Task<User> getUser(string userId, Gamemode mode)
+        public async Task<User> GetUser(string userId, Gamemode mode)
         {
             return await RequestApi<User>(Route.USER.Compile(userId, mode.ToString().ToLowerInvariant()), Token);
         }
