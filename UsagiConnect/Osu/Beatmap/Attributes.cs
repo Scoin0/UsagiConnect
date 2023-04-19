@@ -29,7 +29,7 @@ namespace UsagiConnect.Osu.Beatmap
 
         // Taiko
         [JsonProperty("stamina_difficulty")]
-        public float stamina_difficulty { get; set; }
+        public float StaminaDifficulty { get; set; }
         [JsonProperty("rhythm_difficulty")]
         public float RhythmDifficulty { get; set; }
         [JsonProperty("colour_diffculty")]

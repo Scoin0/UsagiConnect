@@ -7,18 +7,18 @@ namespace UsagiConnect.Osu.Enums
 {
     public static class ModUtils
     {
-        private static Dictionary<Mods, string> ModName { get; }
+        private static Dictionary<Mods, string> modName { get; }
 
         static ModUtils()
         {
-            ModName = new Dictionary<Mods, string>();
+            modName = new Dictionary<Mods, string>();
             var m = typeof(Mods);
             var mi = m.GetTypeInfo();
             var mods = Enum.GetValues(m).Cast<Mods>();
 
             foreach (var mod in mods)
             {
-                ModName[mod] = mi.DeclaredMembers
+                modName[mod] = mi.DeclaredMembers
                     .FirstOrDefault(dm => dm.Name == mod.ToString())
                     .GetCustomAttribute<ModAttribute>().ShortName;
             }
@@ -27,9 +27,9 @@ namespace UsagiConnect.Osu.Enums
         public static string ToModString(this Mods mods)
         {
             if (mods == Mods.None)
-                return ModName[Mods.None];
+                return modName[Mods.None];
 
-            var m = ModName
+            var m = modName
                 .Where(k => k.Key != Mods.None && (mods & k.Key) == k.Key)
                 .Select(k => k.Value);
             return string.Join(",", mods);
