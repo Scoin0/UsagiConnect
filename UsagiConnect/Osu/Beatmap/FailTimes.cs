@@ -7,7 +7,6 @@ namespace UsagiConnect.Osu.Beatmap
     {
         [JsonProperty("fail")]
         public IEnumerable<int> Fail { get; set; }
-
         [JsonProperty("exit")]
         public IEnumerable<int> Exit { get; set; }
     }

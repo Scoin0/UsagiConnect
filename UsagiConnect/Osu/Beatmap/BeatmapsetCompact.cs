@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using UsagiConnect.Osu.Enums;
-using UsagiConnect.Osu.Beatmap;
 
 namespace UsagiConnect.Osu.Beatmap
 {

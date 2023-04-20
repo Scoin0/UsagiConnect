@@ -7,7 +7,6 @@ namespace UsagiConnect.Osu.User
     {
         [JsonProperty("rank")]
         public int Rank { get; set; }
-
         [JsonProperty("updated_at")]
         public DateTimeOffset UpdatedAt { get; set; }
     }

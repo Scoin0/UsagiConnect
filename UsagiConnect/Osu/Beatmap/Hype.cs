@@ -6,7 +6,6 @@ namespace UsagiConnect.Osu.Beatmap
     {
         [JsonProperty("current")]
         public int Current { get; set; }
-
         [JsonProperty("required")]
         public int Required { get; set; }
     }
