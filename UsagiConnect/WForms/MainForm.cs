@@ -46,7 +46,7 @@ namespace UsagiConnect.WForms
             //Beatmap map = await OsuClient.GetBeatmap("2023927");
             //Log.Info(Config.GetApiParsedMessage(Config.OsuIrcMessage, map).Result);
 
-            CommandClient.ReceiveBeatmap("https://osu.ppy.sh/beatmapsets/1972778#osu/4093569");
+            //CommandClient.ReceiveBeatmap("https://osu.ppy.sh/beatmapsets/1972778#osu/4093569");
         }
 
         private void rtbLinkClicked(object sender, LinkClickedEventArgs e)
@@ -139,6 +139,7 @@ namespace UsagiConnect.WForms
         {
             OsuClient = OsuClient.CreateClient(Config.OsuClientId, Config.OsuClientSecret);
             TwiClient = new TwiClient();
+            TwiClient.StartClient();
 
             if (OsuClient.IsOnline) 
             {
