@@ -1,5 +1,6 @@
 ﻿using log4net;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace UsagiConnect.Commands
@@ -9,6 +10,7 @@ namespace UsagiConnect.Commands
         private static readonly ILog Log = LogManager.GetLogger(typeof(Command).Name);
         protected string Name { get; set; } = string.Empty;
         protected string Description { get; set; } = string.Empty;
+        protected List<string> Usage = new List<string>();
         protected string[] Aliases { get; set; } = new string[0];
         protected Command[] SubCommands { get; set; } = new Command[0];
 
@@ -16,15 +18,15 @@ namespace UsagiConnect.Commands
 
         public void Run(CommandEvent pevent)
         {
-            if (pevent.args.Length > 0) 
+            if (pevent.GetArgs().Length > 0) 
             {
-                string[] args = pevent.args;
+                string[] args = pevent.GetArgs();
 
                 foreach (Command command in SubCommands)
                 {
                     if (command.IsCommandFor(args[0]))
                     {
-                        pevent.args = args.Length > 1 ? new ArraySegment<string>(args, 1, args.Length - 1).ToArray() : new string[0];
+                        pevent.args = args.Length > 1 ? new ArraySegment<string>(args, 1, args.Length).ToArray() : new string[0];
                         command.Run(pevent);
                     }
                 }
@@ -58,6 +60,11 @@ namespace UsagiConnect.Commands
         public string GetDescription()
         {
             return Description;
+        }
+
+        public List<string> GetUsages()
+        {
+            return Usage;
         }
 
         public string[] GetAliases()
