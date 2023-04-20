@@ -194,6 +194,7 @@
     <Compile Include="Commands\CommandClient.cs" />
     <Compile Include="Commands\CommandEvent.cs" />
     <Compile Include="Commands\TwitchCommands\NowPlayingCommand.cs" />
+    <Compile Include="Commands\TwitchCommands\StatsCommand.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Osu\Beatmap\Attributes.cs" />
     <Compile Include="Osu\Beatmap\Availability.cs" />
@@ -208,6 +209,8 @@
     <Compile Include="Osu\Beatmap\Nominations.cs" />
     <Compile Include="Osu\Exceptions\BeatmapNotFoundException.cs" />
     <Compile Include="Osu\Exceptions\InvalidApiKeyException.cs" />
+    <Compile Include="Osu\User\GradeCounts.cs" />
+    <Compile Include="Osu\User\Level.cs" />
     <Compile Include="Osu\User\ProfileBanner.cs" />
     <Compile Include="Osu\User\RankHighest.cs" />
     <Compile Include="Osu\User\UserAccountHistory.cs" />
@@ -219,6 +222,7 @@
     <Compile Include="Osu\Enums\RankStatus.cs" />
     <Compile Include="Osu\User\User.cs" />
     <Compile Include="Osu\User\UserCompact.cs" />
+    <Compile Include="Osu\User\UserStatistics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ConvertTime.cs" />
