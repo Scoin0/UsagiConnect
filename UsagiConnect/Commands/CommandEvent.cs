@@ -14,7 +14,7 @@ namespace UsagiConnect.Commands
         {
             this.pevent = pevent;
             this.args = args;
-            this.client = client;;
+            this.client = client;
         }
 
         public string[] GetArgs()

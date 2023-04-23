@@ -1,6 +1,8 @@
 ﻿using log4net;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,6 +28,7 @@ namespace UsagiConnect.WForms
         public static OsuClient OsuClient;
         public static Config Config;
         public static TwiClient TwiClient;
+        GOsuMemoryClient go = new GOsuMemoryClient();
         private Form activeForm;
         private Button currentButton;
 

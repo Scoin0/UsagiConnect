@@ -10,7 +10,7 @@ namespace UsagiConnect.Osu.Enums
         Taiko = 1,
         [Description("osu!catch")]
         Fruits = 2,
-        [Description("osu!maina")]
-        Maina = 3
+        [Description("osu!mania")]
+        Mania = 3
     }
 }

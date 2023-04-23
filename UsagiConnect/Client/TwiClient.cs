@@ -46,7 +46,9 @@ namespace UsagiConnect.Client
             try
             {
                 TwitchClient.Initialize(credentials, MainForm.Config.TwitchChannel);
+                TwitchClient.OnLog += Client_OnLog;
                 TwitchClient.OnConnected += Client_OnConnected;
+                TwitchClient.OnConnectionError += Client_OnConnectionError;
                 TwitchClient.Connect();
             }
             catch (Exception)
@@ -55,9 +57,18 @@ namespace UsagiConnect.Client
             }
         }
 
+        private void Client_OnLog(object sender, OnLogArgs e)
+        {
+        }
+
         private void Client_OnConnected(object sender, OnConnectedArgs e)
         {
             Log.Info("Successfully Joined:  #" + MainForm.Config.TwitchChannel);
+        }
+
+        private void Client_OnConnectionError(object sender, OnConnectionErrorArgs e)
+        {
+            Log.Warn(e.BotUsername + " failed to connect to Twitch!");
         }
 
         private void LoadListeners()

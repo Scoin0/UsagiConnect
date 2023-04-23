@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
+using TwitchLib.Client.Models;
 using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.Osu.Enums;
 using UsagiConnect.Osu.Exceptions;
@@ -14,27 +15,30 @@ namespace UsagiConnect.Commands
 {
     public class CommandClient
     {
-        public User user;
+        public User OsuUser;
+        public string TwitchUser;
+        public static string channel = MainForm.Config.TwitchChannel;
         private static readonly ILog Log = LogManager.GetLogger(typeof(CommandClient).Name);
         private string prefix = MainForm.Config.Prefix;
-        private static string channel = MainForm.Config.TwitchChannel;
         private static Beatmap beatmap;
         private readonly List<Command> commands;
         private readonly Dictionary<string, int> commandIndex;
 
-        public CommandClient(TwitchClient client)
+        public CommandClient(TwitchClient Client)
         {
-            client.OnMessageReceived += OnChannelMessage;
+            Client.OnMessageReceived += OnChannelMessage;
             commands = new List<Command>();
             commandIndex = new Dictionary<string, int>();
-            GetUser();
+            GetOsuUser();
         }
 
-        private async void GetUser()
+        // Gets the local osu user
+        private async void GetOsuUser()
         {
-            user = await MainForm.OsuClient.GetUser(MainForm.Config.BanchoUsername, Gamemode.Osu);
+            OsuUser = await MainForm.OsuClient.GetUser(MainForm.Config.BanchoUsername, Gamemode.Osu);
         }
 
+        // Adds the commands to the command index
         public void AddCommand(Command command)
         {
             string name = command.GetName();
@@ -61,11 +65,13 @@ namespace UsagiConnect.Commands
             Log.Info($"Added the command {command.GetName()}");
         }
 
+        // Send a message inside of one twitch channel
         public void SendMessage(string message)
         {
             MainForm.TwiClient.GetTwitchClient().SendMessage(channel, message);
         }
 
+        // Parse incoming Beatmaps
         public static string ParseMessage(string message)
         {
             string delimiters = "https?:\\/\\/osu.ppy.sh\\/(beatmapsets)\\/([0-9]*)(#osu|#taiko|#ctb|#maina)\\/([0-9]*)";
@@ -87,10 +93,12 @@ namespace UsagiConnect.Commands
                     string beatmap = urlSplit[3];
                     return beatmap;
                 default:
+                    MainForm.TwiClient.GetTwitchClient().SendMessage(channel, "Invalid Beatmap Sent. Please check your url.");
                     throw new BeatmapNotFoundException("Beatmap not found");
             }
         }
 
+        // Receive incoming Beatmaps
         public static async void ReceiveBeatmap(string beatmapToReceive)
         {
             try
@@ -98,19 +106,22 @@ namespace UsagiConnect.Commands
                 Log.Info("Received possible osu song request. Parsing now...");
                 beatmap = await MainForm.OsuClient.GetBeatmap(ParseMessage(beatmapToReceive));
             }
-            catch
+            catch (BeatmapNotFoundException)
             {
-                Log.Error("Beatmap invalid.");
+                Log.Error("Invalid Beatmap.");
             }
         }
 
+        // Receives all of Twitch Chat Messages.
         public void OnChannelMessage(object sender, OnMessageReceivedArgs e)
         {
+            TwitchUser = e.ChatMessage.Username;
             string[] parts = null;
             string message = e.ChatMessage.Message;
-            message = Regex.Replace(message, @"\p{C}+", string.Empty); // Add this to remove a random unicode character that shows up. Why is it there???
+            message = Regex.Replace(message, @"\p{C}+", string.Empty); // Added this to remove a random unicode character that shows up. Why is it there???
             string prefix = MainForm.Config.Prefix;
 
+            // Parse incoming beatmap requests
             if (message.Contains("https://osu.ppy.sh/"))
             {
                 ReceiveBeatmap(message);
@@ -119,20 +130,19 @@ namespace UsagiConnect.Commands
             if (parts == null & message.StartsWith(prefix))
                 parts = message.Substring(prefix.Length).Trim().Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
+            // Parse incoming commands and running them
             if (parts != null)
             {
                 string name = parts[0];
-                string[] args = null;
+                string[] args;
 
                 if (parts != null && parts.Length > 1)
                 {
                     args = parts[1]?.Split(' ') ?? new string[0];
-                    Log.Info(parts.Length);
                 }
                 else
                 {
                     args = Array.Empty<string>();
-                    Log.Info(parts.Length);
                 }
 
                 Command command;
