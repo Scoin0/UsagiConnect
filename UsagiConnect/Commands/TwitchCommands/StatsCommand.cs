@@ -69,7 +69,6 @@ namespace UsagiConnect.Commands.TwitchCommands
             catch
             {
                 return false;
-
             }
         }
         
