@@ -31,6 +31,5 @@ namespace UsagiConnect.Osu.User
         public Level Level { get; set; }
         [JsonProperty("grade_counts")]
         public GradeCounts GradeCounts { get; set; }
-
     }
 }
