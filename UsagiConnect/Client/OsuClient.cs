@@ -1,15 +1,15 @@
 ﻿using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using UsagiConnect.Osu.Enums;
-using UsagiConnect.Osu.User;
 using UsagiConnect.Osu.Beatmap;
+using UsagiConnect.Osu.Enums;
 using UsagiConnect.Osu.Exceptions;
-using System.Net;
+using UsagiConnect.Osu.User;
 
 namespace UsagiConnect.Client
 {
@@ -66,15 +66,15 @@ namespace UsagiConnect.Client
             }
             catch (HttpRequestException e)
             {
-                Log.Warn($"HTTP Exception: {e.Message}");
+                Log.Error($"HTTP Exception: {e.Message}");
             }
             catch (JsonException e)
             {
-                Log.Warn($"JSON Exception: {e.Message}");
+                Log.Error($"JSON Exception: {e.Message}");
             }
             catch 
             {
-                Log.Warn("Unable to retrieve token. Is the configuration set up properly?");
+                Log.Error("Unable to retrieve token. Is the configuration set up properly?");
             }
             return null;
         }
@@ -102,15 +102,11 @@ namespace UsagiConnect.Client
             }
             catch (HttpRequestException e)
             {
-                Log.Warn($"HTTP Exception: {e.Message}");
+                Log.Error($"HTTP Exception: {e.Message}");
             }
             catch (JsonException e)
             {
-                Log.Warn($"JSON Exception: {e.Message}");
-            }
-            catch
-            {
-                Log.Warn("Unable to retrieve token. Is the configuration set up properly?");
+                Log.Error($"JSON Exception: {e.Message}");
             }
             return default;
         }
@@ -142,15 +138,11 @@ namespace UsagiConnect.Client
             }
             catch (HttpRequestException e)
             {
-                Log.Warn($"HTTP Exception: {e.Message}");
+                Log.Error($"HTTP Exception: {e.Message}");
             }
             catch (JsonException e)
             {
-                Log.Warn($"JSON Exception: {e.Message}");
-            }
-            catch
-            {
-                Log.Warn("Something went wrong. Perhaps it's not connected to the api?");
+                Log.Error($"JSON Exception: {e.Message}");
             }
             return default;
         }
