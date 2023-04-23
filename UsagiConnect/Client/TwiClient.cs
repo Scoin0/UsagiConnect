@@ -81,6 +81,7 @@ namespace UsagiConnect.Client
         {
             CommandClient.AddCommand(new NowPlayingCommand());
             CommandClient.AddCommand(new StatsCommand());
+            CommandClient.AddCommand(new HelpCommand());
         }
     }
 }
