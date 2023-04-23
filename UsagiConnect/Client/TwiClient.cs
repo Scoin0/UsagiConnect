@@ -80,9 +80,10 @@ namespace UsagiConnect.Client
 
         private void AddCommands()
         {
-            CommandClient.AddCommand(new NowPlayingCommand());
-            CommandClient.AddCommand(new StatsCommand());
             CommandClient.AddCommand(new HelpCommand());
+            CommandClient.AddCommand(new StatsCommand());
+            CommandClient.AddCommand(new StarLimitCommand());
+            CommandClient.AddCommand(new NowPlayingCommand());
             CommandClient.AddCommand(new RequestToggleCommand());
         }
     }

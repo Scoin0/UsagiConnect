@@ -196,6 +196,8 @@
     <Compile Include="Commands\CommandEvent.cs" />
     <Compile Include="Commands\TwitchCommands\HelpCommand.cs" />
     <Compile Include="Commands\TwitchCommands\NowPlayingCommand.cs" />
+    <Compile Include="Commands\TwitchCommands\RequestToggleCommand.cs" />
+    <Compile Include="Commands\TwitchCommands\StarLimitCommand.cs" />
     <Compile Include="Commands\TwitchCommands\StatsCommand.cs" />
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Osu\Beatmap\Attributes.cs" />
@@ -228,7 +230,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ConvertTime.cs" />
-    <Compile Include="Utilities\Optional.cs" />
     <Compile Include="Utilities\RichTextBoxAppender.cs" />
     <Compile Include="WForms\CustomControls\CircularPictureBox.cs">
       <SubType>Component</SubType>
