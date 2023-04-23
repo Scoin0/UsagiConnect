@@ -8,6 +8,8 @@ using System.Text.RegularExpressions;
 using UsagiConnect.Osu.Beatmap;
 using System.Threading.Tasks;
 using UsagiConnect.Utilities;
+using UsagiConnect.Client;
+using System;
 
 namespace UsagiConnect.Configuration
 {
@@ -37,11 +39,13 @@ namespace UsagiConnect.Configuration
         /* Osu Settings */
         public string OsuClientId { get; set; } = string.Empty;
         public string OsuClientSecret { get; set; } = string.Empty;
+        public double OsuStarLimit { get; set; } = 10.0;
 
         /* Custom Messages Settings */
         public string TwitchMessage { get; set; } = "[RECEIVED] > <user_sent> [<ranked_status>] <artist> - <title> [<version>] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>";
         public string OsuIrcMessage { get; set; } = "[<user_sent>] > [https://osu.ppy.sh/b/<beatmap_id> <artist> - <title> [<version>]] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>";
         public string NowPlayingMessage { get; set; } = "Here you go! <beatmap_url>";
+        public string OsuStarLimitMessage { get; set; } = "<red_exclamation> Sorry The star level exceeds the limit.";
 
         public Config()
         {
@@ -122,6 +126,29 @@ namespace UsagiConnect.Configuration
             keywords.Add("ar", beatmap.AR);
             keywords.Add("od", map.Attribute.OverallDifficulty);
             return Task.FromResult(ParseKeywords(message, keywords));
+        }
+
+        public string GetLocalParsedMessage(string message)
+        {
+            GOsuMemoryClient Go = new GOsuMemoryClient();
+            Beatmap beatmap = Go.GetSongFromGOsuMemory().Result;
+            BeatmapAttributes beatmapAtr = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString());
+            Dictionary<string, object> keywords = new Dictionary<string, object>();
+            keywords.Add("music_note_emoji", "\u266B");
+            keywords.Add("star_emoji", "\u2605");
+            keywords.Add("red_exclamation", "\u2757");
+            keywords.Add("ranked_status", beatmap.Status);
+            keywords.Add("artist", beatmap.Beatmapset.Artist);
+            keywords.Add("title", beatmap.Beatmapset.Title);
+            keywords.Add("version", beatmap.Version);
+            keywords.Add("length", ConvertTime.HumanReadableTime(beatmap.TotalLength));
+            keywords.Add("star_rating", beatmap.DifficultyRating);
+            keywords.Add("beatmap_id", beatmap.Id);
+            keywords.Add("beatmap_url", beatmap.Url);
+            keywords.Add("bpm", beatmap.BPM);
+            keywords.Add("ar", beatmap.AR);
+            keywords.Add("od", beatmapAtr.Attribute.OverallDifficulty);
+            return (ParseKeywords(message, keywords));
         }
 
         public string ParseKeywords(string message, Dictionary<string, object> keywords)
