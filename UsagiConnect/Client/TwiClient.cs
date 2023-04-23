@@ -1,5 +1,6 @@
 ﻿using log4net;
 using System;
+using System.Runtime.InteropServices;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;
@@ -82,6 +83,7 @@ namespace UsagiConnect.Client
             CommandClient.AddCommand(new NowPlayingCommand());
             CommandClient.AddCommand(new StatsCommand());
             CommandClient.AddCommand(new HelpCommand());
+            CommandClient.AddCommand(new RequestToggleCommand());
         }
     }
 }
