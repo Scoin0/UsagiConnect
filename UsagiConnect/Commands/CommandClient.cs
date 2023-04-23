@@ -21,7 +21,7 @@ namespace UsagiConnect.Commands
         private static readonly ILog Log = LogManager.GetLogger(typeof(CommandClient).Name);
         private string prefix = MainForm.Config.Prefix;
         private static Beatmap beatmap;
-        private readonly List<Command> commands;
+        public List<Command> commands;
         private readonly Dictionary<string, int> commandIndex;
 
         public CommandClient(TwitchClient Client)
