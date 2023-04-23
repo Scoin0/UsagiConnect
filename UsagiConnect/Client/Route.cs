@@ -7,13 +7,13 @@ namespace UsagiConnect.Client
     public class Route
     {
         /* ENDPOINTS */
-        public static Route BEATMAP = new Route(Method.GET, "beatmaps/{beatmap_id}");
-        public static Route BEATMAP_ATTRIBUTES = new Route(Method.POST, "beatmaps/{beatmap_id}/attributes");
-        public static Route USER = new Route(Method.GET, "users/{user}/{mode}");
+        public static Route BEATMAP = new(Method.GET, "beatmaps/{beatmap_id}");
+        public static Route BEATMAP_ATTRIBUTES = new(Method.POST, "beatmaps/{beatmap_id}/attributes");
+        public static Route USER = new(Method.GET, "users/{user}/{mode}");
 
-        private Method method;
-        private string route;
-        private int paramsCount;
+        private readonly Method method;
+        private readonly string route;
+        private readonly int paramsCount;
         
         public enum Method
         {
