@@ -17,7 +17,7 @@ namespace UsagiConnect.Client
         private static readonly ILog Log = LogManager.GetLogger(typeof(TwiClient).Name);
         TwitchClient TwitchClient;
         ConnectionCredentials credentials = new ConnectionCredentials(MainForm.Config.TwitchUsername, MainForm.Config.TwitchPassword);
-        CommandClient CommandClient;
+        public CommandClient CommandClient;
 
         public TwiClient()
         {

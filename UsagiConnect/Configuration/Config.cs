@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using UsagiConnect.Utilities;
 using UsagiConnect.Client;
 using System;
+using UsagiConnect.Commands;
+using System.Net.Http;
+using UsagiConnect.Osu.Enums;
 
 namespace UsagiConnect.Configuration
 {
@@ -109,21 +112,22 @@ namespace UsagiConnect.Configuration
 
         public Task<string> GetApiParsedMessage(string message, Beatmap beatmap)
         {
-            BeatmapAttributes map = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString());
+            BeatmapAttributes map = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString(), beatmap.Mode);
             Dictionary<string, object> keywords = new Dictionary<string, object>();
             keywords.Add("music_note_emoji", "\u266B");
             keywords.Add("star_emoji", "\u2605");
             keywords.Add("red_exclamation", "\u2757");
+            keywords.Add("user_sent", MainForm.TwiClient.CommandClient.TwitchUser);
             keywords.Add("ranked_status", beatmap.Status);
             keywords.Add("artist", beatmap.Beatmapset.Artist);
             keywords.Add("title", beatmap.Beatmapset.Title);
             keywords.Add("version", beatmap.Version);
             keywords.Add("length", ConvertTime.HumanReadableTime(beatmap.TotalLength));
-            keywords.Add("star_rating", beatmap.DifficultyRating);
+            keywords.Add("star_rating", map.Attribute.StarRating.ToString("0.00"));
             keywords.Add("beatmap_id", beatmap.Id);
             keywords.Add("beatmap_url", beatmap.Url);
             keywords.Add("bpm", beatmap.BPM);
-            keywords.Add("ar", beatmap.AR);
+            keywords.Add("ar", map.Attribute.ApproachRate);
             keywords.Add("od", map.Attribute.OverallDifficulty);
             return Task.FromResult(ParseKeywords(message, keywords));
         }
@@ -132,21 +136,22 @@ namespace UsagiConnect.Configuration
         {
             GOsuMemoryClient Go = new GOsuMemoryClient();
             Beatmap beatmap = Go.GetSongFromGOsuMemory().Result;
-            BeatmapAttributes beatmapAtr = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString());
+            BeatmapAttributes beatmapAtr = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString(), beatmap.Mode);
             Dictionary<string, object> keywords = new Dictionary<string, object>();
             keywords.Add("music_note_emoji", "\u266B");
             keywords.Add("star_emoji", "\u2605");
             keywords.Add("red_exclamation", "\u2757");
+            keywords.Add("user_sent", MainForm.TwiClient.CommandClient.TwitchUser);
             keywords.Add("ranked_status", beatmap.Status);
             keywords.Add("artist", beatmap.Beatmapset.Artist);
             keywords.Add("title", beatmap.Beatmapset.Title);
             keywords.Add("version", beatmap.Version);
             keywords.Add("length", ConvertTime.HumanReadableTime(beatmap.TotalLength));
-            keywords.Add("star_rating", beatmap.DifficultyRating);
+            keywords.Add("star_rating", beatmap.DifficultyRating.ToString("0.00"));
             keywords.Add("beatmap_id", beatmap.Id);
             keywords.Add("beatmap_url", beatmap.Url);
             keywords.Add("bpm", beatmap.BPM);
-            keywords.Add("ar", beatmap.AR);
+            keywords.Add("ar", beatmapAtr.Attribute.ApproachRate);
             keywords.Add("od", beatmapAtr.Attribute.OverallDifficulty);
             return (ParseKeywords(message, keywords));
         }

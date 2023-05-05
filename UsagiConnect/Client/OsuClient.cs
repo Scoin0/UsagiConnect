@@ -111,10 +111,10 @@ namespace UsagiConnect.Client
             return default;
         }
 
-        public T PostApi<T>(string compiledRoute, string token)
+        public T PostApi<T>(string compiledRoute, string token, Gamemode mode)
         {
             var client = new HttpClient();
-            var content = new StringContent("{\"mods\":\"0\",\"ruleset\":\"osu\"}", Encoding.UTF8, "application/json");
+            var content = new StringContent("{\"mods\":\"0\",\"ruleset\":\"" + mode.ToString().ToLower() + "\"}", Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             try
@@ -151,10 +151,9 @@ namespace UsagiConnect.Client
         {
             return await RequestApi<Beatmap>(Route.BEATMAP.Compile(beatmapId), Token);
         }
-
-        public BeatmapAttributes GetBeatmapAttributes(string beatmapId)
+        public BeatmapAttributes GetBeatmapAttributes(string beatmapId, Gamemode mode)
         {
-            return PostApi<BeatmapAttributes>(Route.BEATMAP_ATTRIBUTES.Compile(beatmapId), Token);
+            return PostApi<BeatmapAttributes>(Route.BEATMAP_ATTRIBUTES.Compile(beatmapId), Token, mode);
         }
 
         public async Task<User> GetUser(string userId, Gamemode mode)

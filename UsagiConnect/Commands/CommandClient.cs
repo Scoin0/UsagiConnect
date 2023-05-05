@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;
+using UsagiConnect.Commands.TwitchCommands;
 using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.Osu.Enums;
 using UsagiConnect.Osu.Exceptions;
@@ -17,6 +18,7 @@ namespace UsagiConnect.Commands
     {
         public User OsuUser;
         public string TwitchUser;
+        public static string ModString;
         public static string channel = MainForm.Config.TwitchChannel;
         private static readonly ILog Log = LogManager.GetLogger(typeof(CommandClient).Name);
         private string prefix = MainForm.Config.Prefix;
@@ -74,7 +76,7 @@ namespace UsagiConnect.Commands
         // Parse incoming Beatmaps
         public static string ParseMessage(string message)
         {
-            string delimiters = "https?:\\/\\/osu.ppy.sh\\/(beatmapsets)\\/([0-9]*)(#osu|#taiko|#ctb|#maina)\\/([0-9]*)";
+            string delimiters = "https?:\\/\\/osu.ppy.sh\\/(beatmapsets)\\/([0-9]*)(#osu|#taiko|#ctb|#mania)\\/([0-9]*)";
             Regex urlPattern = new Regex(delimiters, RegexOptions.IgnoreCase | RegexOptions.Multiline);
             MatchCollection matcher = urlPattern.Matches(message);
             List<string> urlSplit = new List<string>();
@@ -103,8 +105,45 @@ namespace UsagiConnect.Commands
         {
             try
             {
-                Log.Info("Received possible osu song request. Parsing now...");
-                beatmap = await MainForm.OsuClient.GetBeatmap(ParseMessage(beatmapToReceive));
+                if (RequestToggleCommand.RequestToggle)
+                {
+                    Log.Info("Received possible osu song request. Parsing now...");
+                    beatmap = await MainForm.OsuClient.GetBeatmap(ParseMessage(beatmapToReceive));
+                    Log.Info("Beatmap ID Found: " + beatmap.Id);
+                    if (beatmapToReceive.Contains("+"))
+                    {
+                        string[] splitter = beatmapToReceive.Split('+');
+                        string mods = splitter[1];
+                        Log.Info("Attached Mods: " + mods);
+                        if (beatmap.DifficultyRating > MainForm.Config.OsuStarLimit)
+                        {
+                            MainForm.TwiClient.GetTwitchClient().SendMessage(channel, MainForm.Config.OsuStarLimitMessage);
+                        }
+                        else
+                        {
+                            Log.Info(await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap));
+                            string message = await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap);
+                            MainForm.TwiClient.GetTwitchClient().SendMessage(channel, message);
+                        }
+                    }
+                    else
+                    {
+                        if (beatmap.DifficultyRating > MainForm.Config.OsuStarLimit)
+                        {
+                            MainForm.TwiClient.GetTwitchClient().SendMessage(channel, MainForm.Config.OsuStarLimitMessage);
+                        }
+                        else
+                        {
+                            Log.Info(await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap));
+                            string message = await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap);
+                            MainForm.TwiClient.GetTwitchClient().SendMessage(channel, message);
+                        }
+                    }
+                }
+                else
+                {
+                    MainForm.TwiClient.GetTwitchClient().SendMessage(channel, "You cannot send a beatmap at this time");
+                }
             }
             catch (BeatmapNotFoundException)
             {
