@@ -113,17 +113,17 @@ namespace UsagiConnect.Commands
                     if (beatmapToReceive.Contains("+"))
                     {
                         string[] splitter = beatmapToReceive.Split('+');
-                        string mods = splitter[1];
-                        Log.Info("Attached Mods: " + mods);
+                        string mods = splitter[1].Replace(" ", "");
+                        int modValue = ModUtils.ConvertToInt(mods);
                         if (beatmap.DifficultyRating > MainForm.Config.OsuStarLimit)
                         {
                             MainForm.TwiClient.GetTwitchClient().SendMessage(channel, MainForm.Config.OsuStarLimitMessage);
                         }
                         else
                         {
-                            Log.Info(await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap));
-                            string message = await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap);
-                            MainForm.TwiClient.GetTwitchClient().SendMessage(channel, message);
+                            Log.Info(await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap, modValue));
+                            string message = await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap, modValue);
+                            MainForm.TwiClient.GetTwitchClient().SendMessage(channel, message + " +" + mods);
                         }
                     }
                     else
@@ -134,8 +134,8 @@ namespace UsagiConnect.Commands
                         }
                         else
                         {
-                            Log.Info(await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap));
-                            string message = await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap);
+                            Log.Info(await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap, 0));
+                            string message = await MainForm.Config.GetApiParsedMessage(MainForm.Config.TwitchMessage, beatmap, 0);
                             MainForm.TwiClient.GetTwitchClient().SendMessage(channel, message);
                         }
                     }

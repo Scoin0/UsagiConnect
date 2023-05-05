@@ -19,7 +19,7 @@ namespace UsagiConnect.Utilities
             }
             else
             {
-                formattedTime += string.Format("{0:D}", time.Seconds);
+                formattedTime += string.Format("0:{0:D}", time.Seconds);
             }
             return formattedTime;
         }

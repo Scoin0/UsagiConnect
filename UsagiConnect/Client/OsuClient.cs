@@ -114,7 +114,43 @@ namespace UsagiConnect.Client
         public T PostApi<T>(string compiledRoute, string token, Gamemode mode)
         {
             var client = new HttpClient();
-            var content = new StringContent("{\"mods\":\"0\",\"ruleset\":\"" + mode.ToString().ToLower() + "\"}", Encoding.UTF8, "application/json");
+            var content = new StringContent("{\"mods\":\"" + 0 + "\",\"ruleset\":\"" + mode.ToString().ToLower() + "\"}", Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            try
+            {
+                var response = client.PostAsync(OSU_ENDPOINT + compiledRoute, content).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseBody = response.Content.ReadAsStringAsync().Result;
+                    return JsonConvert.DeserializeObject<T>(responseBody);
+                }
+                else
+                {
+                    Log.Error($"Error code: {response.StatusCode}");
+                    return response.StatusCode switch
+                    {
+                        HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
+                        HttpStatusCode.NotFound => throw new BeatmapNotFoundException(),
+                        _ => throw new System.NotImplementedException()
+                    };
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                Log.Error($"HTTP Exception: {e.Message}");
+            }
+            catch (JsonException e)
+            {
+                Log.Error($"JSON Exception: {e.Message}");
+            }
+            return default;
+        }
+
+        public T PostApi<T>(string compiledRoute, string token, Gamemode mode, int mod)
+        {
+            var client = new HttpClient();
+            var content = new StringContent("{\"mods\":\""+ mod +"\",\"ruleset\":\"" + mode.ToString().ToLower() + "\"}", Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             try
@@ -151,9 +187,15 @@ namespace UsagiConnect.Client
         {
             return await RequestApi<Beatmap>(Route.BEATMAP.Compile(beatmapId), Token);
         }
+
         public BeatmapAttributes GetBeatmapAttributes(string beatmapId, Gamemode mode)
         {
             return PostApi<BeatmapAttributes>(Route.BEATMAP_ATTRIBUTES.Compile(beatmapId), Token, mode);
+        }
+
+        public BeatmapAttributes GetBeatmapAttributes(string beatmapId, Gamemode mode, int mod)
+        {
+            return PostApi<BeatmapAttributes>(Route.BEATMAP_ATTRIBUTES.Compile(beatmapId), Token, mode, mod);
         }
 
         public async Task<User> GetUser(string userId, Gamemode mode)

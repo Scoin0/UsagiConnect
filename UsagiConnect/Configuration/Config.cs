@@ -110,9 +110,9 @@ namespace UsagiConnect.Configuration
             serializer.Serialize(file, this);
         }
 
-        public Task<string> GetApiParsedMessage(string message, Beatmap beatmap)
+        public Task<string> GetApiParsedMessage(string message, Beatmap beatmap, int mod)
         {
-            BeatmapAttributes map = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString(), beatmap.Mode);
+            BeatmapAttributes map = MainForm.OsuClient.GetBeatmapAttributes(beatmap.Id.ToString(), beatmap.Mode, mod);
             Dictionary<string, object> keywords = new Dictionary<string, object>();
             keywords.Add("music_note_emoji", "\u266B");
             keywords.Add("star_emoji", "\u2605");
@@ -122,13 +122,13 @@ namespace UsagiConnect.Configuration
             keywords.Add("artist", beatmap.Beatmapset.Artist);
             keywords.Add("title", beatmap.Beatmapset.Title);
             keywords.Add("version", beatmap.Version);
-            keywords.Add("length", ConvertTime.HumanReadableTime(beatmap.TotalLength));
-            keywords.Add("star_rating", map.Attribute.StarRating.ToString("0.00"));
+            keywords.Add("length", ConvertTime.HumanReadableTime(ModUtils.ConvertTime(beatmap.TotalLength, mod)));
+            keywords.Add("star_rating", map.Attribute.StarRating.ToString("#.##"));
             keywords.Add("beatmap_id", beatmap.Id);
             keywords.Add("beatmap_url", beatmap.Url);
-            keywords.Add("bpm", beatmap.BPM);
-            keywords.Add("ar", map.Attribute.ApproachRate);
-            keywords.Add("od", map.Attribute.OverallDifficulty);
+            keywords.Add("bpm", ModUtils.ConvertBPM(beatmap.BPM, mod));
+            keywords.Add("ar", map.Attribute.ApproachRate.ToString("#.##"));
+            keywords.Add("od", map.Attribute.OverallDifficulty.ToString("#.##"));
             return Task.FromResult(ParseKeywords(message, keywords));
         }
 
@@ -147,12 +147,12 @@ namespace UsagiConnect.Configuration
             keywords.Add("title", beatmap.Beatmapset.Title);
             keywords.Add("version", beatmap.Version);
             keywords.Add("length", ConvertTime.HumanReadableTime(beatmap.TotalLength));
-            keywords.Add("star_rating", beatmap.DifficultyRating.ToString("0.00"));
+            keywords.Add("star_rating", beatmap.DifficultyRating.ToString("#.##"));
             keywords.Add("beatmap_id", beatmap.Id);
             keywords.Add("beatmap_url", beatmap.Url);
             keywords.Add("bpm", beatmap.BPM);
-            keywords.Add("ar", beatmapAtr.Attribute.ApproachRate);
-            keywords.Add("od", beatmapAtr.Attribute.OverallDifficulty);
+            keywords.Add("ar", beatmapAtr.Attribute.ApproachRate.ToString("#.##"));
+            keywords.Add("od", beatmapAtr.Attribute.OverallDifficulty.ToString("#.##"));
             return (ParseKeywords(message, keywords));
         }
 

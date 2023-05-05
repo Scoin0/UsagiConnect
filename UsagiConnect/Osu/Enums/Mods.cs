@@ -5,7 +5,7 @@ namespace UsagiConnect.Osu.Enums
     [Flags]
     public enum Mods
     {
-        [Mod("Unnamed")] None = 0,
+        [Mod("NM")] None = 0,
         [Mod("NF")] NoFail = 1,
         [Mod("EZ")] Easy = 2,
         [Mod("NV")] TouchDevice = 4,
