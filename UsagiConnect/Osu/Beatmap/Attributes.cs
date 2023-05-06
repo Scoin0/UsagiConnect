@@ -35,7 +35,7 @@ namespace UsagiConnect.Osu.Beatmap
         [JsonProperty("colour_diffculty")]
         public float ColorDifficulty { get; set; }
 
-        // Maina
+        // Mania
         [JsonProperty("score_multiplier")]
         public float ScoreMultiplier { get; set; }
     }

@@ -18,7 +18,6 @@ namespace UsagiConnect.Commands
     {
         public User OsuUser;
         public string TwitchUser;
-        public static string ModString;
         public static string channel = MainForm.Config.TwitchChannel;
         private static readonly ILog Log = LogManager.GetLogger(typeof(CommandClient).Name);
         private string prefix = MainForm.Config.Prefix;
