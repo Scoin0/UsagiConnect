@@ -18,7 +18,7 @@ namespace UsagiConnect.Commands.TwitchCommands
             Aliases = new string[] { "np" };
         }
 
-        public override void OnCommand(CommandEvent evnt)
+        public override void OnCommand(CommandEvent @event)
         {
             try
             {
@@ -30,11 +30,11 @@ namespace UsagiConnect.Commands.TwitchCommands
 
                 if (!mods.Contains("NM"))
                 {
-                    evnt.GetClient().SendMessage(MainForm.Config.GetLocalParsedMessage(MainForm.Config.NowPlayingMessage) + " +" + mods);
+                    @event.GetClient().SendMessage(MainForm.Config.GetLocalParsedMessage(MainForm.Config.NowPlayingMessage) + " +" + mods);
                 }
                 else
                 {
-                    evnt.GetClient().SendMessage(MainForm.Config.GetLocalParsedMessage(MainForm.Config.NowPlayingMessage));
+                    @event.GetClient().SendMessage(MainForm.Config.GetLocalParsedMessage(MainForm.Config.NowPlayingMessage));
                 }
             }
             catch (Exception)

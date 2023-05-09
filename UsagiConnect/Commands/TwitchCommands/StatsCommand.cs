@@ -20,37 +20,37 @@ namespace UsagiConnect.Commands.TwitchCommands
             Usage.Add("stats <user> <gamemode>");
         }
 
-        public override void OnCommand(CommandEvent pevent)
+        public override void OnCommand(CommandEvent @event)
         {
             try
             {
-                if (pevent.GetArgs().Length == 0)
+                if (@event.GetArgs().Length == 0)
                 {
-                    pevent.GetClient().SendMessage(GetStats(user: pevent.GetClient().OsuUser));
+                    @event.GetClient().SendMessage(GetStats(user: @event.GetClient().OsuUser));
                 }
-                if (pevent.GetArgs().Length == 1)
+                if (@event.GetArgs().Length == 1)
                 {
-                    if (CheckIfArgIsAGamemode(pevent.GetArgs()[0]))
+                    if (CheckIfArgIsAGamemode(@event.GetArgs()[0]))
                     {
-                        Gamemode gamemode = (Gamemode)Enum.Parse(typeof(Gamemode), pevent.GetArgs()[0], true);
-                        User user = MainForm.OsuClient.GetUser(pevent.GetClient().OsuUser.Username, gamemode).Result;
-                        pevent.GetClient().SendMessage(GetStats(user));
+                        Gamemode gamemode = (Gamemode)Enum.Parse(typeof(Gamemode), @event.GetArgs()[0], true);
+                        User user = MainForm.OsuClient.GetUser(@event.GetClient().OsuUser.Username, gamemode).Result;
+                        @event.GetClient().SendMessage(GetStats(user));
                     }
                     else
                     {
-                        User user = MainForm.OsuClient.GetUser(pevent.GetArgs()[0], Gamemode.Osu).Result;
-                        pevent.GetClient().SendMessage(GetStats(user));
+                        User user = MainForm.OsuClient.GetUser(@event.GetArgs()[0], Gamemode.Osu).Result;
+                        @event.GetClient().SendMessage(GetStats(user));
                     }
                 }
-                if (pevent.GetArgs().Length == 2)
+                if (@event.GetArgs().Length == 2)
                 {
-                    Gamemode gamemode = (Gamemode)Enum.Parse(typeof(Gamemode), pevent.GetArgs()[1], true);
-                    User user = MainForm.OsuClient.GetUser(pevent.GetArgs()[0], gamemode).Result;
-                    pevent.GetClient().SendMessage(GetStats(user));
+                    Gamemode gamemode = (Gamemode)Enum.Parse(typeof(Gamemode), @event.GetArgs()[1], true);
+                    User user = MainForm.OsuClient.GetUser(@event.GetArgs()[0], gamemode).Result;
+                    @event.GetClient().SendMessage(GetStats(user));
                 }
-                if (pevent.GetArgs().Length >= 3)
+                if (@event.GetArgs().Length >= 3)
                 {
-                    pevent.GetClient().SendMessage("There's too many arguments in this command.");
+                    @event.GetClient().SendMessage("There's too many arguments in this command.");
                 }
             } 
             catch (Exception)
