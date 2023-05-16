@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
-using TwitchLib.Client.Models;
 using UsagiConnect.Commands.TwitchCommands;
 using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.Osu.Enums;
@@ -193,7 +192,7 @@ namespace UsagiConnect.Commands
                 if (command != null)
                 {
                     CommandEvent commandEvent = new CommandEvent(e.ChatMessage, args, this);
-                    Log.Info($"Sending { commandEvent.GetClient().prefix }{ command.GetName() } command in #{ e.ChatMessage.Channel }");
+                    Log.Info($"Sending {commandEvent.GetClient().prefix}{command.GetName()} command in #{e.ChatMessage.Channel}");
                     command.Run(commandEvent);
                     return;
                 }

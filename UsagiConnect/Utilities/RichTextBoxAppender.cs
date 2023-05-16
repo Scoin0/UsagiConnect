@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using log4net.Appender;
+﻿using log4net.Appender;
 using log4net.Core;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace UsagiConnect.Utilities
 {

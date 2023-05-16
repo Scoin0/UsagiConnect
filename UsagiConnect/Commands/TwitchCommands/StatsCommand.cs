@@ -52,7 +52,7 @@ namespace UsagiConnect.Commands.TwitchCommands
                 {
                     @event.GetClient().SendMessage("There's too many arguments in this command.");
                 }
-            } 
+            }
             catch (Exception)
             {
                 Log.Error("Either player or gamemode was typed incorrectly.");
@@ -71,7 +71,7 @@ namespace UsagiConnect.Commands.TwitchCommands
                 return false;
             }
         }
-        
+
         public string GetStats(User user)
         {
             try

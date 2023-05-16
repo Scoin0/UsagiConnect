@@ -28,7 +28,7 @@ namespace UsagiConnect.WForms.CustomControls
         public Color BorderColor { get => borderColor; set { borderColor = value; this.Invalidate(); } }
         public Color BorderFocusColor { get => borderFocusColor; set { borderFocusColor = value; } }
         public Color PlaceholderColor { get => placeholderColor; set { placeholderColor = value; if (isPlaceholder) textBox1.ForeColor = value; } }
-        public override Color BackColor { get { return base.BackColor; }  set { base.BackColor = value; textBox1.BackColor = value; } }
+        public override Color BackColor { get { return base.BackColor; } set { base.BackColor = value; textBox1.BackColor = value; } }
         public override Color ForeColor { get { return base.ForeColor; } set { base.ForeColor = value; textBox1.ForeColor = value; } }
         public override Font Font { get { return base.Font; } set { base.Font = value; textBox1.Font = value; if (this.DesignMode) UpdateControlHeight(); } }
         public string PlaceholderText { get => placeholderText; set { placeholderText = value; textBox1.Text = string.Empty; SetPlaceHolder(); } }
@@ -168,7 +168,7 @@ namespace UsagiConnect.WForms.CustomControls
                 textBox1.MinimumSize = new Size(0, textHeight);
                 textBox1.Multiline = false;
                 this.Height = textBox1.Height + this.Padding.Top + this.Padding.Bottom;
-            }    
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

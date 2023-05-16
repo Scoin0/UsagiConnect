@@ -1,15 +1,11 @@
 ﻿using log4net;
 using System;
 using System.Drawing;
-using System.IO;
-using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UsagiConnect.Client;
-using UsagiConnect.Commands;
 using UsagiConnect.Configuration;
-using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.Osu.Enums;
 using UsagiConnect.Osu.User;
 using Button = System.Windows.Forms.Button;
@@ -24,11 +20,10 @@ namespace UsagiConnect.WForms
 
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private static extern void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
-        
+
         public static OsuClient OsuClient;
         public static Config Config;
         public static TwiClient TwiClient;
-        GOsuMemoryClient go = new GOsuMemoryClient();
         private Form activeForm;
         private Button currentButton;
 
@@ -45,11 +40,6 @@ namespace UsagiConnect.WForms
             Log.Info("Welcome to UsagiConnect!");
             Config = new Config();
             await CreateClientsAsync();
-
-            //Beatmap map = await OsuClient.GetBeatmap("2023927");
-            //Log.Info(Config.GetApiParsedMessage(Config.OsuIrcMessage, map).Result);
-
-            //CommandClient.ReceiveBeatmap("https://osu.ppy.sh/beatmapsets/1972778#osu/4093569");
         }
 
         private void rtbLinkClicked(object sender, LinkClickedEventArgs e)
@@ -144,7 +134,7 @@ namespace UsagiConnect.WForms
             TwiClient = new TwiClient();
             TwiClient.StartClient();
 
-            if (OsuClient.IsOnline) 
+            if (OsuClient.IsOnline)
             {
                 User user = new User();
                 user = await OsuClient.GetUser(Config.BanchoUsername, Gamemode.Osu);

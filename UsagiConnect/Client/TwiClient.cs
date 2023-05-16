@@ -1,6 +1,5 @@
 ﻿using log4net;
 using System;
-using System.Runtime.InteropServices;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;

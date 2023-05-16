@@ -51,7 +51,7 @@ namespace UsagiConnect.Client
                 var response = client.SendAsync(request).Result;
                 if (!response.IsSuccessStatusCode)
                 {
-                    Log.Error($"Error code: { response.StatusCode }");
+                    Log.Error($"Error code: {response.StatusCode}");
                     return response.StatusCode switch
                     {
                         HttpStatusCode.Unauthorized => throw new InvalidApiKeyException(),
@@ -72,7 +72,7 @@ namespace UsagiConnect.Client
             {
                 Log.Error($"JSON Exception: {e.Message}");
             }
-            catch 
+            catch
             {
                 Log.Error("Unable to retrieve token. Is the configuration set up properly?");
             }
@@ -150,7 +150,7 @@ namespace UsagiConnect.Client
         public T PostApi<T>(string compiledRoute, string token, Gamemode mode, int mod)
         {
             var client = new HttpClient();
-            var content = new StringContent("{\"mods\":\""+ mod +"\",\"ruleset\":\"" + mode.ToString().ToLower() + "\"}", Encoding.UTF8, "application/json");
+            var content = new StringContent("{\"mods\":\"" + mod + "\",\"ruleset\":\"" + mode.ToString().ToLower() + "\"}", Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             try

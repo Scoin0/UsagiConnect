@@ -41,6 +41,7 @@ namespace UsagiConnect.WForms
             this.lblBanchoPassword = new System.Windows.Forms.Label();
             this.lblOsuClientId = new System.Windows.Forms.Label();
             this.lblOsuClientSecret = new System.Windows.Forms.Label();
+            this.dbSave = new UsagiConnect.WForms.CustomControls.DesignButton();
             this.dtbOsuClientSecret = new UsagiConnect.WForms.CustomControls.DesignTextBox();
             this.dtbOsuClientId = new UsagiConnect.WForms.CustomControls.DesignTextBox();
             this.dtbBanchoPassword = new UsagiConnect.WForms.CustomControls.DesignTextBox();
@@ -51,7 +52,6 @@ namespace UsagiConnect.WForms
             this.dtbTwitchUsername = new UsagiConnect.WForms.CustomControls.DesignTextBox();
             this.tsUseUpdater = new UsagiConnect.WForms.CustomControls.ToggleSlider();
             this.dtbPrefix = new UsagiConnect.WForms.CustomControls.DesignTextBox();
-            this.dbSave = new UsagiConnect.WForms.CustomControls.DesignButton();
             this.SuspendLayout();
             // 
             // lblPrefix
@@ -174,6 +174,25 @@ namespace UsagiConnect.WForms
             this.lblOsuClientSecret.Size = new System.Drawing.Size(232, 34);
             this.lblOsuClientSecret.TabIndex = 19;
             this.lblOsuClientSecret.Text = "Osu Client Secret";
+            // 
+            // dbSave
+            // 
+            this.dbSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dbSave.BackColor = System.Drawing.Color.Green;
+            this.dbSave.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.dbSave.BorderRadius = 20;
+            this.dbSave.BorderSize = 0;
+            this.dbSave.FlatAppearance.BorderSize = 0;
+            this.dbSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dbSave.Font = new System.Drawing.Font("Franklin Gothic Medium", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dbSave.ForeColor = System.Drawing.Color.White;
+            this.dbSave.Location = new System.Drawing.Point(648, 456);
+            this.dbSave.Name = "dbSave";
+            this.dbSave.Size = new System.Drawing.Size(95, 40);
+            this.dbSave.TabIndex = 21;
+            this.dbSave.Text = "Save";
+            this.dbSave.UseVisualStyleBackColor = false;
+            this.dbSave.Click += new System.EventHandler(this.dbSave_Click);
             // 
             // dtbOsuClientSecret
             // 
@@ -406,29 +425,11 @@ namespace UsagiConnect.WForms
             this.dtbPrefix.Texts = "";
             this.dtbPrefix.UnderlinedStyle = true;
             // 
-            // dbSave
-            // 
-            this.dbSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dbSave.BackColor = System.Drawing.Color.Green;
-            this.dbSave.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.dbSave.BorderRadius = 20;
-            this.dbSave.BorderSize = 0;
-            this.dbSave.FlatAppearance.BorderSize = 0;
-            this.dbSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dbSave.Font = new System.Drawing.Font("Franklin Gothic Medium", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dbSave.ForeColor = System.Drawing.Color.White;
-            this.dbSave.Location = new System.Drawing.Point(648, 456);
-            this.dbSave.Name = "dbSave";
-            this.dbSave.Size = new System.Drawing.Size(95, 40);
-            this.dbSave.TabIndex = 21;
-            this.dbSave.Text = "Save";
-            this.dbSave.UseVisualStyleBackColor = false;
-            this.dbSave.Click += new System.EventHandler(this.dbSave_Click);
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
             this.ClientSize = new System.Drawing.Size(755, 508);
             this.Controls.Add(this.dbSave);

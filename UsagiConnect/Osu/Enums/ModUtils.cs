@@ -26,7 +26,7 @@ namespace UsagiConnect.Osu.Enums
             }
         }
 
-        public static TAttribute GetAttribute<TAttribute>(this Enum mods) 
+        public static TAttribute GetAttribute<TAttribute>(this Enum mods)
             where TAttribute : Attribute
         {
             var type = mods.GetType();
@@ -81,7 +81,7 @@ namespace UsagiConnect.Osu.Enums
             if (modType.Contains("NC"))
             {
                 modValue += 64;
-            } 
+            }
             else if (modType.Contains("PF"))
             {
                 modValue += 32;

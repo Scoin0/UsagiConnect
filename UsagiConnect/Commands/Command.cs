@@ -18,7 +18,7 @@ namespace UsagiConnect.Commands
 
         public void Run(CommandEvent pevent)
         {
-            if (pevent.GetArgs().Length > 0) 
+            if (pevent.GetArgs().Length > 0)
             {
                 string[] args = pevent.GetArgs();
 
@@ -32,7 +32,7 @@ namespace UsagiConnect.Commands
                 }
             }
 
-            try 
+            try
             {
                 OnCommand(pevent);
             }
@@ -46,7 +46,7 @@ namespace UsagiConnect.Commands
         {
             if (Name.Equals(input)) return true;
 
-            foreach (string alias in Aliases) 
+            foreach (string alias in Aliases)
                 if (alias.Equals(input)) return true;
 
             return false;

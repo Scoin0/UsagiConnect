@@ -14,7 +14,7 @@ namespace UsagiConnect.Client
         private readonly Method method;
         private readonly string route;
         private readonly int paramsCount;
-        
+
         public enum Method
         {
             GET, POST
@@ -34,7 +34,7 @@ namespace UsagiConnect.Client
             if (parameters.Length != paramsCount)
                 throw new ArgumentException(string.Format("Expected {0} params: {1}", paramsCount, route));
             StringBuilder compiledRoute = new StringBuilder(route);
-            foreach (string param in parameters) 
+            foreach (string param in parameters)
             {
                 compiledRoute.Replace(compiledRoute.ToString().Substring(compiledRoute.ToString().IndexOf("{"), compiledRoute.ToString().IndexOf("}") - compiledRoute.ToString().IndexOf("{") + 1), param);
             }

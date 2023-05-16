@@ -1,7 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace UsagiConnect.WForms.CustomControls
 {
@@ -41,7 +41,7 @@ namespace UsagiConnect.WForms.CustomControls
         protected override void OnPaint(PaintEventArgs pevent)
         {
             int toggleSize = this.Height - 5;
-            pevent.Graphics.SmoothingMode= SmoothingMode.AntiAlias;
+            pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             pevent.Graphics.Clear(this.Parent.BackColor);
 
             if (this.Checked)
@@ -49,16 +49,16 @@ namespace UsagiConnect.WForms.CustomControls
                 if (solidStyle)
                     pevent.Graphics.FillPath(new SolidBrush(OnBackColor), GetFigurePath());
                 else pevent.Graphics.DrawPath(new Pen(OnBackColor, 2), GetFigurePath());
-                pevent.Graphics.FillEllipse(new SolidBrush(OnToggleColor), 
+                pevent.Graphics.FillEllipse(new SolidBrush(OnToggleColor),
                     new Rectangle(this.Width - this.Height + 1, 2, toggleSize, toggleSize));
             }
             else
             {
                 if (solidStyle)
-                pevent.Graphics.FillPath(new SolidBrush(OffBackColor), GetFigurePath());
+                    pevent.Graphics.FillPath(new SolidBrush(OffBackColor), GetFigurePath());
                 else pevent.Graphics.DrawPath(new Pen(OffBackColor, 2), GetFigurePath());
                 pevent.Graphics.FillEllipse(new SolidBrush(OffToggleColor),
-                    new Rectangle(2 , 2, toggleSize, toggleSize));
+                    new Rectangle(2, 2, toggleSize, toggleSize));
             }
         }
     }

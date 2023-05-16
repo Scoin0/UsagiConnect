@@ -1,18 +1,15 @@
 ﻿using log4net;
-using System.IO;
-using UsagiConnect.WForms;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using UsagiConnect.Osu.Beatmap;
 using System.Threading.Tasks;
-using UsagiConnect.Utilities;
 using UsagiConnect.Client;
-using System;
-using UsagiConnect.Commands;
-using System.Net.Http;
+using UsagiConnect.Osu.Beatmap;
 using UsagiConnect.Osu.Enums;
+using UsagiConnect.Utilities;
+using UsagiConnect.WForms;
 
 namespace UsagiConnect.Configuration
 {
