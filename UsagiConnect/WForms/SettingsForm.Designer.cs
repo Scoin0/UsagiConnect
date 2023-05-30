@@ -41,6 +41,16 @@ namespace UsagiConnect.WForms
             this.lblBanchoPassword = new System.Windows.Forms.Label();
             this.lblOsuClientId = new System.Windows.Forms.Label();
             this.lblOsuClientSecret = new System.Windows.Forms.Label();
+            this.lblStarLimit = new System.Windows.Forms.Label();
+            this.lblTwitchMessage = new System.Windows.Forms.Label();
+            this.lblOsuIrcMessage = new System.Windows.Forms.Label();
+            this.lblNowPlayingMessage = new System.Windows.Forms.Label();
+            this.lblStarLimitMessage = new System.Windows.Forms.Label();
+            this.dtbStarLimitMessage = new UsagiConnect.WForms.CustomControls.DesignTextBox();
+            this.dtbNowPlayingMessage = new UsagiConnect.WForms.CustomControls.DesignTextBox();
+            this.dtbOsuIrcMessage = new UsagiConnect.WForms.CustomControls.DesignTextBox();
+            this.dtbTwitchMessage = new UsagiConnect.WForms.CustomControls.DesignTextBox();
+            this.dtbStarLimit = new UsagiConnect.WForms.CustomControls.DesignTextBox();
             this.dbSave = new UsagiConnect.WForms.CustomControls.DesignButton();
             this.dtbOsuClientSecret = new UsagiConnect.WForms.CustomControls.DesignTextBox();
             this.dtbOsuClientId = new UsagiConnect.WForms.CustomControls.DesignTextBox();
@@ -59,7 +69,7 @@ namespace UsagiConnect.WForms
             this.lblPrefix.AutoSize = true;
             this.lblPrefix.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrefix.ForeColor = System.Drawing.Color.White;
-            this.lblPrefix.Location = new System.Drawing.Point(12, 58);
+            this.lblPrefix.Location = new System.Drawing.Point(12, 41);
             this.lblPrefix.Name = "lblPrefix";
             this.lblPrefix.Size = new System.Drawing.Size(88, 34);
             this.lblPrefix.TabIndex = 0;
@@ -70,7 +80,7 @@ namespace UsagiConnect.WForms
             this.lblUseUpdater.AutoSize = true;
             this.lblUseUpdater.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUseUpdater.ForeColor = System.Drawing.Color.White;
-            this.lblUseUpdater.Location = new System.Drawing.Point(12, 99);
+            this.lblUseUpdater.Location = new System.Drawing.Point(12, 82);
             this.lblUseUpdater.Name = "lblUseUpdater";
             this.lblUseUpdater.Size = new System.Drawing.Size(168, 34);
             this.lblUseUpdater.TabIndex = 2;
@@ -79,9 +89,10 @@ namespace UsagiConnect.WForms
             // lblConfigurationSettings
             // 
             this.lblConfigurationSettings.AutoSize = true;
+            this.lblConfigurationSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblConfigurationSettings.Font = new System.Drawing.Font("Franklin Gothic Medium", 26.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConfigurationSettings.ForeColor = System.Drawing.Color.White;
-            this.lblConfigurationSettings.Location = new System.Drawing.Point(11, 9);
+            this.lblConfigurationSettings.Location = new System.Drawing.Point(0, 0);
             this.lblConfigurationSettings.Name = "lblConfigurationSettings";
             this.lblConfigurationSettings.Size = new System.Drawing.Size(375, 41);
             this.lblConfigurationSettings.TabIndex = 4;
@@ -92,7 +103,7 @@ namespace UsagiConnect.WForms
             this.lblTwitchUsername.AutoSize = true;
             this.lblTwitchUsername.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTwitchUsername.ForeColor = System.Drawing.Color.White;
-            this.lblTwitchUsername.Location = new System.Drawing.Point(12, 140);
+            this.lblTwitchUsername.Location = new System.Drawing.Point(12, 123);
             this.lblTwitchUsername.Name = "lblTwitchUsername";
             this.lblTwitchUsername.Size = new System.Drawing.Size(232, 34);
             this.lblTwitchUsername.TabIndex = 5;
@@ -103,7 +114,7 @@ namespace UsagiConnect.WForms
             this.lblTwitchPassword.AutoSize = true;
             this.lblTwitchPassword.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTwitchPassword.ForeColor = System.Drawing.Color.White;
-            this.lblTwitchPassword.Location = new System.Drawing.Point(12, 182);
+            this.lblTwitchPassword.Location = new System.Drawing.Point(12, 164);
             this.lblTwitchPassword.Name = "lblTwitchPassword";
             this.lblTwitchPassword.Size = new System.Drawing.Size(225, 34);
             this.lblTwitchPassword.TabIndex = 7;
@@ -114,7 +125,7 @@ namespace UsagiConnect.WForms
             this.lblTwitchChannel.AutoSize = true;
             this.lblTwitchChannel.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTwitchChannel.ForeColor = System.Drawing.Color.White;
-            this.lblTwitchChannel.Location = new System.Drawing.Point(12, 223);
+            this.lblTwitchChannel.Location = new System.Drawing.Point(12, 205);
             this.lblTwitchChannel.Name = "lblTwitchChannel";
             this.lblTwitchChannel.Size = new System.Drawing.Size(209, 34);
             this.lblTwitchChannel.TabIndex = 9;
@@ -125,7 +136,7 @@ namespace UsagiConnect.WForms
             this.lblGOsuMemoryPath.AutoSize = true;
             this.lblGOsuMemoryPath.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGOsuMemoryPath.ForeColor = System.Drawing.Color.White;
-            this.lblGOsuMemoryPath.Location = new System.Drawing.Point(12, 264);
+            this.lblGOsuMemoryPath.Location = new System.Drawing.Point(12, 246);
             this.lblGOsuMemoryPath.Name = "lblGOsuMemoryPath";
             this.lblGOsuMemoryPath.Size = new System.Drawing.Size(256, 34);
             this.lblGOsuMemoryPath.TabIndex = 11;
@@ -136,7 +147,7 @@ namespace UsagiConnect.WForms
             this.lblBanchoUsername.AutoSize = true;
             this.lblBanchoUsername.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBanchoUsername.ForeColor = System.Drawing.Color.White;
-            this.lblBanchoUsername.Location = new System.Drawing.Point(12, 305);
+            this.lblBanchoUsername.Location = new System.Drawing.Point(12, 287);
             this.lblBanchoUsername.Name = "lblBanchoUsername";
             this.lblBanchoUsername.Size = new System.Drawing.Size(244, 34);
             this.lblBanchoUsername.TabIndex = 13;
@@ -147,7 +158,7 @@ namespace UsagiConnect.WForms
             this.lblBanchoPassword.AutoSize = true;
             this.lblBanchoPassword.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBanchoPassword.ForeColor = System.Drawing.Color.White;
-            this.lblBanchoPassword.Location = new System.Drawing.Point(12, 346);
+            this.lblBanchoPassword.Location = new System.Drawing.Point(12, 328);
             this.lblBanchoPassword.Name = "lblBanchoPassword";
             this.lblBanchoPassword.Size = new System.Drawing.Size(237, 34);
             this.lblBanchoPassword.TabIndex = 15;
@@ -158,7 +169,7 @@ namespace UsagiConnect.WForms
             this.lblOsuClientId.AutoSize = true;
             this.lblOsuClientId.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOsuClientId.ForeColor = System.Drawing.Color.White;
-            this.lblOsuClientId.Location = new System.Drawing.Point(12, 387);
+            this.lblOsuClientId.Location = new System.Drawing.Point(12, 369);
             this.lblOsuClientId.Name = "lblOsuClientId";
             this.lblOsuClientId.Size = new System.Drawing.Size(179, 34);
             this.lblOsuClientId.TabIndex = 17;
@@ -169,15 +180,192 @@ namespace UsagiConnect.WForms
             this.lblOsuClientSecret.AutoSize = true;
             this.lblOsuClientSecret.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOsuClientSecret.ForeColor = System.Drawing.Color.White;
-            this.lblOsuClientSecret.Location = new System.Drawing.Point(12, 428);
+            this.lblOsuClientSecret.Location = new System.Drawing.Point(12, 410);
             this.lblOsuClientSecret.Name = "lblOsuClientSecret";
             this.lblOsuClientSecret.Size = new System.Drawing.Size(232, 34);
             this.lblOsuClientSecret.TabIndex = 19;
             this.lblOsuClientSecret.Text = "Osu Client Secret";
             // 
+            // lblStarLimit
+            // 
+            this.lblStarLimit.AutoSize = true;
+            this.lblStarLimit.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStarLimit.ForeColor = System.Drawing.Color.White;
+            this.lblStarLimit.Location = new System.Drawing.Point(12, 451);
+            this.lblStarLimit.Name = "lblStarLimit";
+            this.lblStarLimit.Size = new System.Drawing.Size(140, 34);
+            this.lblStarLimit.TabIndex = 22;
+            this.lblStarLimit.Text = "Star Limit";
+            // 
+            // lblTwitchMessage
+            // 
+            this.lblTwitchMessage.AutoSize = true;
+            this.lblTwitchMessage.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTwitchMessage.ForeColor = System.Drawing.Color.White;
+            this.lblTwitchMessage.Location = new System.Drawing.Point(12, 492);
+            this.lblTwitchMessage.Name = "lblTwitchMessage";
+            this.lblTwitchMessage.Size = new System.Drawing.Size(215, 34);
+            this.lblTwitchMessage.TabIndex = 24;
+            this.lblTwitchMessage.Text = "Twitch Message";
+            // 
+            // lblOsuIrcMessage
+            // 
+            this.lblOsuIrcMessage.AutoSize = true;
+            this.lblOsuIrcMessage.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOsuIrcMessage.ForeColor = System.Drawing.Color.White;
+            this.lblOsuIrcMessage.Location = new System.Drawing.Point(12, 533);
+            this.lblOsuIrcMessage.Name = "lblOsuIrcMessage";
+            this.lblOsuIrcMessage.Size = new System.Drawing.Size(220, 34);
+            this.lblOsuIrcMessage.TabIndex = 26;
+            this.lblOsuIrcMessage.Text = "Osu Irc Message";
+            // 
+            // lblNowPlayingMessage
+            // 
+            this.lblNowPlayingMessage.AutoSize = true;
+            this.lblNowPlayingMessage.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNowPlayingMessage.ForeColor = System.Drawing.Color.White;
+            this.lblNowPlayingMessage.Location = new System.Drawing.Point(12, 574);
+            this.lblNowPlayingMessage.Name = "lblNowPlayingMessage";
+            this.lblNowPlayingMessage.Size = new System.Drawing.Size(288, 34);
+            this.lblNowPlayingMessage.TabIndex = 28;
+            this.lblNowPlayingMessage.Text = "Now Playing Message";
+            // 
+            // lblStarLimitMessage
+            // 
+            this.lblStarLimitMessage.AutoSize = true;
+            this.lblStarLimitMessage.Font = new System.Drawing.Font("Franklin Gothic Medium", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStarLimitMessage.ForeColor = System.Drawing.Color.White;
+            this.lblStarLimitMessage.Location = new System.Drawing.Point(12, 615);
+            this.lblStarLimitMessage.Name = "lblStarLimitMessage";
+            this.lblStarLimitMessage.Size = new System.Drawing.Size(258, 34);
+            this.lblStarLimitMessage.TabIndex = 30;
+            this.lblStarLimitMessage.Text = "Star Limit Message";
+            // 
+            // dtbStarLimitMessage
+            // 
+            this.dtbStarLimitMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
+            this.dtbStarLimitMessage.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.dtbStarLimitMessage.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.dtbStarLimitMessage.BorderRadius = 15;
+            this.dtbStarLimitMessage.BorderSize = 2;
+            this.dtbStarLimitMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.dtbStarLimitMessage.ForeColor = System.Drawing.Color.White;
+            this.dtbStarLimitMessage.IsFocused = false;
+            this.dtbStarLimitMessage.IsPasswordChar = false;
+            this.dtbStarLimitMessage.IsPlaceholder = true;
+            this.dtbStarLimitMessage.Location = new System.Drawing.Point(299, 615);
+            this.dtbStarLimitMessage.Margin = new System.Windows.Forms.Padding(4);
+            this.dtbStarLimitMessage.Multiline = false;
+            this.dtbStarLimitMessage.Name = "dtbStarLimitMessage";
+            this.dtbStarLimitMessage.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.dtbStarLimitMessage.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.dtbStarLimitMessage.PlaceholderText = "<red_exclamation> Sorry The star level exceeds the limit.";
+            this.dtbStarLimitMessage.Size = new System.Drawing.Size(250, 32);
+            this.dtbStarLimitMessage.TabIndex = 31;
+            this.dtbStarLimitMessage.Texts = "";
+            this.dtbStarLimitMessage.UnderlinedStyle = true;
+            // 
+            // dtbNowPlayingMessage
+            // 
+            this.dtbNowPlayingMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
+            this.dtbNowPlayingMessage.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.dtbNowPlayingMessage.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.dtbNowPlayingMessage.BorderRadius = 15;
+            this.dtbNowPlayingMessage.BorderSize = 2;
+            this.dtbNowPlayingMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.dtbNowPlayingMessage.ForeColor = System.Drawing.Color.White;
+            this.dtbNowPlayingMessage.IsFocused = false;
+            this.dtbNowPlayingMessage.IsPasswordChar = false;
+            this.dtbNowPlayingMessage.IsPlaceholder = true;
+            this.dtbNowPlayingMessage.Location = new System.Drawing.Point(299, 574);
+            this.dtbNowPlayingMessage.Margin = new System.Windows.Forms.Padding(4);
+            this.dtbNowPlayingMessage.Multiline = false;
+            this.dtbNowPlayingMessage.Name = "dtbNowPlayingMessage";
+            this.dtbNowPlayingMessage.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.dtbNowPlayingMessage.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.dtbNowPlayingMessage.PlaceholderText = "Here you go! <beatmap_url>";
+            this.dtbNowPlayingMessage.Size = new System.Drawing.Size(250, 32);
+            this.dtbNowPlayingMessage.TabIndex = 29;
+            this.dtbNowPlayingMessage.Texts = "";
+            this.dtbNowPlayingMessage.UnderlinedStyle = true;
+            // 
+            // dtbOsuIrcMessage
+            // 
+            this.dtbOsuIrcMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
+            this.dtbOsuIrcMessage.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.dtbOsuIrcMessage.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.dtbOsuIrcMessage.BorderRadius = 15;
+            this.dtbOsuIrcMessage.BorderSize = 2;
+            this.dtbOsuIrcMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.dtbOsuIrcMessage.ForeColor = System.Drawing.Color.White;
+            this.dtbOsuIrcMessage.IsFocused = false;
+            this.dtbOsuIrcMessage.IsPasswordChar = false;
+            this.dtbOsuIrcMessage.IsPlaceholder = true;
+            this.dtbOsuIrcMessage.Location = new System.Drawing.Point(299, 533);
+            this.dtbOsuIrcMessage.Margin = new System.Windows.Forms.Padding(4);
+            this.dtbOsuIrcMessage.Multiline = false;
+            this.dtbOsuIrcMessage.Name = "dtbOsuIrcMessage";
+            this.dtbOsuIrcMessage.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.dtbOsuIrcMessage.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.dtbOsuIrcMessage.PlaceholderText = "[<user_sent>] > [https://osu.ppy.sh/b/<beatmap_id> <artist> - <title> [<version>]" +
+    "] <music_note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<o" +
+    "d>";
+            this.dtbOsuIrcMessage.Size = new System.Drawing.Size(250, 32);
+            this.dtbOsuIrcMessage.TabIndex = 27;
+            this.dtbOsuIrcMessage.Texts = "";
+            this.dtbOsuIrcMessage.UnderlinedStyle = true;
+            // 
+            // dtbTwitchMessage
+            // 
+            this.dtbTwitchMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
+            this.dtbTwitchMessage.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.dtbTwitchMessage.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.dtbTwitchMessage.BorderRadius = 15;
+            this.dtbTwitchMessage.BorderSize = 2;
+            this.dtbTwitchMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.dtbTwitchMessage.ForeColor = System.Drawing.Color.White;
+            this.dtbTwitchMessage.IsFocused = false;
+            this.dtbTwitchMessage.IsPasswordChar = false;
+            this.dtbTwitchMessage.IsPlaceholder = true;
+            this.dtbTwitchMessage.Location = new System.Drawing.Point(299, 492);
+            this.dtbTwitchMessage.Margin = new System.Windows.Forms.Padding(4);
+            this.dtbTwitchMessage.Multiline = false;
+            this.dtbTwitchMessage.Name = "dtbTwitchMessage";
+            this.dtbTwitchMessage.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.dtbTwitchMessage.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.dtbTwitchMessage.PlaceholderText = "[RECEIVED] > <user_sent> [<ranked_status>] <artist> - <title> [<version>] <music_" +
+    "note_emoji> <length> <star_emoji> <star_rating> BPM:<bpm> AR:<ar> OD:<od>";
+            this.dtbTwitchMessage.Size = new System.Drawing.Size(250, 32);
+            this.dtbTwitchMessage.TabIndex = 25;
+            this.dtbTwitchMessage.Texts = "";
+            this.dtbTwitchMessage.UnderlinedStyle = true;
+            // 
+            // dtbStarLimit
+            // 
+            this.dtbStarLimit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
+            this.dtbStarLimit.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.dtbStarLimit.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.dtbStarLimit.BorderRadius = 15;
+            this.dtbStarLimit.BorderSize = 2;
+            this.dtbStarLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.dtbStarLimit.ForeColor = System.Drawing.Color.White;
+            this.dtbStarLimit.IsFocused = false;
+            this.dtbStarLimit.IsPasswordChar = false;
+            this.dtbStarLimit.IsPlaceholder = true;
+            this.dtbStarLimit.Location = new System.Drawing.Point(299, 451);
+            this.dtbStarLimit.Margin = new System.Windows.Forms.Padding(4);
+            this.dtbStarLimit.Multiline = false;
+            this.dtbStarLimit.Name = "dtbStarLimit";
+            this.dtbStarLimit.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.dtbStarLimit.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.dtbStarLimit.PlaceholderText = "12.99";
+            this.dtbStarLimit.Size = new System.Drawing.Size(250, 32);
+            this.dtbStarLimit.TabIndex = 23;
+            this.dtbStarLimit.Texts = "";
+            this.dtbStarLimit.UnderlinedStyle = true;
+            // 
             // dbSave
             // 
-            this.dbSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dbSave.BackColor = System.Drawing.Color.Green;
             this.dbSave.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.dbSave.BorderRadius = 20;
@@ -186,9 +374,9 @@ namespace UsagiConnect.WForms
             this.dbSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dbSave.Font = new System.Drawing.Font("Franklin Gothic Medium", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbSave.ForeColor = System.Drawing.Color.White;
-            this.dbSave.Location = new System.Drawing.Point(648, 456);
+            this.dbSave.Location = new System.Drawing.Point(580, 606);
             this.dbSave.Name = "dbSave";
-            this.dbSave.Size = new System.Drawing.Size(95, 40);
+            this.dbSave.Size = new System.Drawing.Size(140, 40);
             this.dbSave.TabIndex = 21;
             this.dbSave.Text = "Save";
             this.dbSave.UseVisualStyleBackColor = false;
@@ -206,7 +394,7 @@ namespace UsagiConnect.WForms
             this.dtbOsuClientSecret.IsFocused = false;
             this.dtbOsuClientSecret.IsPasswordChar = true;
             this.dtbOsuClientSecret.IsPlaceholder = true;
-            this.dtbOsuClientSecret.Location = new System.Drawing.Point(275, 430);
+            this.dtbOsuClientSecret.Location = new System.Drawing.Point(299, 410);
             this.dtbOsuClientSecret.Margin = new System.Windows.Forms.Padding(4);
             this.dtbOsuClientSecret.Multiline = false;
             this.dtbOsuClientSecret.Name = "dtbOsuClientSecret";
@@ -230,7 +418,7 @@ namespace UsagiConnect.WForms
             this.dtbOsuClientId.IsFocused = false;
             this.dtbOsuClientId.IsPasswordChar = false;
             this.dtbOsuClientId.IsPlaceholder = true;
-            this.dtbOsuClientId.Location = new System.Drawing.Point(275, 389);
+            this.dtbOsuClientId.Location = new System.Drawing.Point(299, 369);
             this.dtbOsuClientId.Margin = new System.Windows.Forms.Padding(4);
             this.dtbOsuClientId.Multiline = false;
             this.dtbOsuClientId.Name = "dtbOsuClientId";
@@ -254,7 +442,7 @@ namespace UsagiConnect.WForms
             this.dtbBanchoPassword.IsFocused = false;
             this.dtbBanchoPassword.IsPasswordChar = true;
             this.dtbBanchoPassword.IsPlaceholder = true;
-            this.dtbBanchoPassword.Location = new System.Drawing.Point(275, 346);
+            this.dtbBanchoPassword.Location = new System.Drawing.Point(299, 328);
             this.dtbBanchoPassword.Margin = new System.Windows.Forms.Padding(4);
             this.dtbBanchoPassword.Multiline = false;
             this.dtbBanchoPassword.Name = "dtbBanchoPassword";
@@ -278,7 +466,7 @@ namespace UsagiConnect.WForms
             this.dtbBanchoUsername.IsFocused = false;
             this.dtbBanchoUsername.IsPasswordChar = false;
             this.dtbBanchoUsername.IsPlaceholder = true;
-            this.dtbBanchoUsername.Location = new System.Drawing.Point(275, 306);
+            this.dtbBanchoUsername.Location = new System.Drawing.Point(299, 287);
             this.dtbBanchoUsername.Margin = new System.Windows.Forms.Padding(4);
             this.dtbBanchoUsername.Multiline = false;
             this.dtbBanchoUsername.Name = "dtbBanchoUsername";
@@ -302,7 +490,7 @@ namespace UsagiConnect.WForms
             this.dtbGOsuMemoryPath.IsFocused = false;
             this.dtbGOsuMemoryPath.IsPasswordChar = false;
             this.dtbGOsuMemoryPath.IsPlaceholder = true;
-            this.dtbGOsuMemoryPath.Location = new System.Drawing.Point(275, 266);
+            this.dtbGOsuMemoryPath.Location = new System.Drawing.Point(299, 246);
             this.dtbGOsuMemoryPath.Margin = new System.Windows.Forms.Padding(4);
             this.dtbGOsuMemoryPath.Multiline = false;
             this.dtbGOsuMemoryPath.Name = "dtbGOsuMemoryPath";
@@ -326,7 +514,7 @@ namespace UsagiConnect.WForms
             this.dtbTwitchChannel.IsFocused = false;
             this.dtbTwitchChannel.IsPasswordChar = false;
             this.dtbTwitchChannel.IsPlaceholder = true;
-            this.dtbTwitchChannel.Location = new System.Drawing.Point(275, 226);
+            this.dtbTwitchChannel.Location = new System.Drawing.Point(299, 205);
             this.dtbTwitchChannel.Margin = new System.Windows.Forms.Padding(4);
             this.dtbTwitchChannel.Multiline = false;
             this.dtbTwitchChannel.Name = "dtbTwitchChannel";
@@ -350,7 +538,7 @@ namespace UsagiConnect.WForms
             this.dtbTwitchPassword.IsFocused = false;
             this.dtbTwitchPassword.IsPasswordChar = true;
             this.dtbTwitchPassword.IsPlaceholder = true;
-            this.dtbTwitchPassword.Location = new System.Drawing.Point(275, 184);
+            this.dtbTwitchPassword.Location = new System.Drawing.Point(299, 164);
             this.dtbTwitchPassword.Margin = new System.Windows.Forms.Padding(4);
             this.dtbTwitchPassword.Multiline = false;
             this.dtbTwitchPassword.Name = "dtbTwitchPassword";
@@ -374,7 +562,7 @@ namespace UsagiConnect.WForms
             this.dtbTwitchUsername.IsFocused = false;
             this.dtbTwitchUsername.IsPasswordChar = false;
             this.dtbTwitchUsername.IsPlaceholder = true;
-            this.dtbTwitchUsername.Location = new System.Drawing.Point(275, 144);
+            this.dtbTwitchUsername.Location = new System.Drawing.Point(299, 123);
             this.dtbTwitchUsername.Margin = new System.Windows.Forms.Padding(4);
             this.dtbTwitchUsername.Multiline = false;
             this.dtbTwitchUsername.Name = "dtbTwitchUsername";
@@ -389,7 +577,7 @@ namespace UsagiConnect.WForms
             // tsUseUpdater
             // 
             this.tsUseUpdater.AutoSize = true;
-            this.tsUseUpdater.Location = new System.Drawing.Point(282, 103);
+            this.tsUseUpdater.Location = new System.Drawing.Point(308, 80);
             this.tsUseUpdater.MinimumSize = new System.Drawing.Size(20, 30);
             this.tsUseUpdater.Name = "tsUseUpdater";
             this.tsUseUpdater.OffBackColor = System.Drawing.Color.Gray;
@@ -413,7 +601,7 @@ namespace UsagiConnect.WForms
             this.dtbPrefix.IsFocused = false;
             this.dtbPrefix.IsPasswordChar = false;
             this.dtbPrefix.IsPlaceholder = true;
-            this.dtbPrefix.Location = new System.Drawing.Point(275, 60);
+            this.dtbPrefix.Location = new System.Drawing.Point(299, 41);
             this.dtbPrefix.Margin = new System.Windows.Forms.Padding(4);
             this.dtbPrefix.Multiline = false;
             this.dtbPrefix.Name = "dtbPrefix";
@@ -427,11 +615,20 @@ namespace UsagiConnect.WForms
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(49)))), ((int)(((byte)(53)))));
-            this.ClientSize = new System.Drawing.Size(755, 508);
+            this.ClientSize = new System.Drawing.Size(1010, 508);
+            this.Controls.Add(this.dtbStarLimitMessage);
+            this.Controls.Add(this.lblStarLimitMessage);
+            this.Controls.Add(this.dtbNowPlayingMessage);
+            this.Controls.Add(this.lblNowPlayingMessage);
+            this.Controls.Add(this.dtbOsuIrcMessage);
+            this.Controls.Add(this.lblOsuIrcMessage);
+            this.Controls.Add(this.dtbTwitchMessage);
+            this.Controls.Add(this.lblTwitchMessage);
+            this.Controls.Add(this.dtbStarLimit);
+            this.Controls.Add(this.lblStarLimit);
             this.Controls.Add(this.dbSave);
             this.Controls.Add(this.dtbOsuClientSecret);
             this.Controls.Add(this.lblOsuClientSecret);
@@ -486,5 +683,15 @@ namespace UsagiConnect.WForms
         private Label lblOsuClientSecret;
         private CustomControls.DesignTextBox dtbOsuClientSecret;
         private CustomControls.DesignButton dbSave;
+        private Label lblStarLimit;
+        private CustomControls.DesignTextBox dtbStarLimit;
+        private Label lblTwitchMessage;
+        private CustomControls.DesignTextBox dtbTwitchMessage;
+        private Label lblOsuIrcMessage;
+        private CustomControls.DesignTextBox dtbOsuIrcMessage;
+        private Label lblNowPlayingMessage;
+        private CustomControls.DesignTextBox dtbNowPlayingMessage;
+        private Label lblStarLimitMessage;
+        private CustomControls.DesignTextBox dtbStarLimitMessage;
     }
 }
