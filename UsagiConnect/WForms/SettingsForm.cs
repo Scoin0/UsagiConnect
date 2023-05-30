@@ -1,6 +1,7 @@
 ﻿using log4net;
 using System;
 using System.Diagnostics;
+using System.Web.UI;
 using System.Windows.Forms;
 
 namespace UsagiConnect.WForms
@@ -26,6 +27,11 @@ namespace UsagiConnect.WForms
             dtbBanchoPassword.Texts = MainForm.Config.BanchoPassword;
             dtbOsuClientId.Texts = MainForm.Config.OsuClientId;
             dtbOsuClientSecret.Texts = MainForm.Config.OsuClientSecret;
+            dtbStarLimit.Texts = MainForm.Config.OsuStarLimit.ToString();
+            dtbTwitchMessage.Texts = MainForm.Config.TwitchMessage;
+            dtbOsuIrcMessage.Texts = MainForm.Config.OsuIrcMessage;
+            dtbNowPlayingMessage.Texts = MainForm.Config.NowPlayingMessage;
+            dtbStarLimitMessage.Texts = MainForm.Config.OsuStarLimitMessage;
         }
 
         private void lblLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -54,6 +60,11 @@ namespace UsagiConnect.WForms
             MainForm.Config.BanchoPassword = dtbBanchoPassword.Texts;
             MainForm.Config.OsuClientId = dtbOsuClientId.Texts;
             MainForm.Config.OsuClientSecret = dtbOsuClientSecret.Texts;
+            MainForm.Config.OsuStarLimit = Double.Parse(dtbStarLimit.Texts);
+            MainForm.Config.TwitchMessage = dtbTwitchMessage.Texts;
+            MainForm.Config.OsuIrcMessage = dtbOsuIrcMessage.Texts;
+            MainForm.Config.NowPlayingMessage = dtbNowPlayingMessage.Texts;
+            MainForm.Config.OsuStarLimitMessage = dtbStarLimitMessage.Texts;
             MainForm.Config.SaveConfiguration();
         }
     }
