@@ -2,4 +2,6 @@
 
 # UsagiConnect
 
-In-Development
+~~In-Development~~ Abandoned. 
+
+Focused work on making the oringal project much better.
